@@ -91,3 +91,4 @@ if __name__ == "__main__":
         contact_email="angloamerican.recruitment@gmail.com"
     )
     print(json.dumps(result, indent=2))
+

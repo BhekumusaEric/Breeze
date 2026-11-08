@@ -54,9 +54,9 @@ flowchart TD
 
 ---
 
-## 🌟 The 5 Pillars of Breeze
+##  The 5 Pillars of Breeze
 
-### 1. 🛰️ The Opportunity Radar (`breeze-scout-mcp`)
+### 1.  The Opportunity Radar (`breeze-scout-mcp`)
 * **Continuous Web Mining:** Scans thousands of fragmented sources across South Africa and global remote channels:
   * **Jobs & Remote Gigs:** LinkedIn, Indeed, Pnet, Careers24, Remotive, Upwork.
   * **Learnerships & TVETs:** SETA portals, YES4Youth, TVET college registrations.
@@ -65,15 +65,15 @@ flowchart TD
   * **Visas & Exchange:** Youth travel visas, working holiday schemes, scholarship intakes (Chevening, Erasmus, Mandela Rhodes).
 * **Zero-Miss Alerts:** Never miss a cutoff date. Breeze notifies you 7 days, 3 days, and 24 hours before admissions close.
 
-### 2. ⚡ Universal 1-Click Apply (`breeze-apply-mcp`)
+### 2.  Universal 1-Click Apply (`breeze-apply-mcp`)
 * **Fill It Once, Apply Everywhere:** Store your personal details, academic history, resume, ID document, and motivational statements inside `breeze-vault-mcp`.
 * **Autonomous Form Navigation:** When you click *"Apply"*, the agent spins up a headless browser, navigates the application portal, maps your vault data to the input fields, uploads your certified PDFs, and brings you a 100% completed form for your final one-tap review and sign-off.
 
-### 3. ⏱️ Bureaucracy & Booking Sniper (`breeze-booking-mcp`)
+### 3. ⏱ Bureaucracy & Booking Sniper (`breeze-booking-mcp`)
 * **24/7 Automated Slot Watcher:** Booking driving license test slots (eNatis), passport appointments (Home Affairs), clinic slots, or visa appointments (VFS Global) usually requires refreshing pages for days.
 * **Instant Snipe:** Breeze monitors booking calendars 24/7. When a cancellation or new batch of slots opens, Breeze reserves the spot instantly and pings you on WhatsApp to confirm.
 
-### 4. 🛡️ The Scam & Exploitation Shield (`breeze-shield-mcp`)
+### 4.  The Scam & Exploitation Shield (`breeze-shield-mcp`)
 * **Real-Time Due Diligence:** Protects vulnerable young people from employment fraud.
 * **Automated Vetting:**
   * Cross-references company registration numbers (CIPC in South Africa, SEC, Companies House).
@@ -81,13 +81,13 @@ flowchart TD
   * Scans job descriptions for advance-fee triggers (*"Pay R250 for uniform/medical check before interview"*).
   * Provides an instant Trust Score (Green / Yellow / Red).
 
-### 5. 🏷️ Student Budget & Deal Hunter (`breeze-deals-mcp`)
+### 5.  Student Budget & Deal Hunter (`breeze-deals-mcp`)
 * **Transparent Internet Pricing:** Tracks prices on student tech gear (laptops, headphones, textbooks), groceries, and transport.
 * **Fake Discount Detection:** Exposes inflated "discounts" by checking 90-day price history graphs and automatically applies active promo codes.
 
 ---
 
-## 📦 Repository Structure
+##  Repository Structure
 
 ```
 Breeze/
@@ -109,7 +109,7 @@ Breeze/
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 | Layer | Technologies |
 | :--- | :--- |
@@ -122,7 +122,7 @@ Breeze/
 
 ---
 
-## 🚀 Quick Start & Development
+##  Quick Start & Development
 
 To test the Breeze MCP servers locally with your AI agent:
 

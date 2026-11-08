@@ -41,3 +41,4 @@ $$\text{MatchScore} = (w_1 \cdot \text{SkillOverlap}) + (w_2 \cdot \text{Educati
 Breeze does not wait for the user to search. It sends automated proactive alerts:
 * **T-minus 7 Days:** *"University of Pretoria 2027 Engineering applications close in 7 days. Your profile is 96% complete. Tap to finalize."*
 * **T-minus 48 Hours:** *"Urgent: SASSETA Learnership intake closes Friday 16:00. 15 spots remaining in Gauteng."*
+

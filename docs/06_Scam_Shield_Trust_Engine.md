@@ -45,3 +45,4 @@ graph TD
 2. **Fee Demand Trigger Words:** Detects phrases like *"bring R350 for gate pass"*, *"uniform fee deductible"*, *"medical screening fee"*, or *"payment before interview"*.
 3. **Suspicious Interview Locations:** Identifies residential addresses, empty industrial parks, or fast-food restaurants listed as interview venues for corporate positions.
 4. **Instant WhatsApp Hiring:** Immediate job offers extended without any application review or credential verification.
+

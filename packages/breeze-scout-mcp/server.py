@@ -114,3 +114,4 @@ if __name__ == "__main__":
     scout = BreezeScoutServer()
     print("=== Breeze Scout MCP Server Online ===")
     print(json.dumps(scout.search_opportunities(category="JOB"), indent=2))
+

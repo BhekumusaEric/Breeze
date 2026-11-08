@@ -108,3 +108,4 @@ Rather than hard-coding brittle integrations inside prompt wrappers, MCP introdu
 * All personal data residing in `breeze-vault-mcp` is stored on the user's local device, encrypted with AES-256 via SQLCipher.
 * The orchestrator only queries the vault when a user grants explicit permission to apply for a verified opportunity.
 * Raw user identity documents are never transmitted to third-party AI training pipelines.
+

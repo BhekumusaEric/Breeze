@@ -63,3 +63,4 @@ To maintain complete user trust and avoid unintended submissions, Breeze adheres
 1. The AI performs 100% of the manual labor (typing, selecting dropdowns, attaching files).
 2. The AI **never** clicks the final *"Confirm & Submit"* button autonomously.
 3. It displays an interactive visual card showing the filled fields and a captured screenshot of the final page, requiring a single tap from the user to finalize the submission.
+

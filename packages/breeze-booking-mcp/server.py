@@ -78,3 +78,4 @@ if __name__ == "__main__":
     booking = BreezeBookingServer()
     print("=== Breeze Booking MCP Server Online ===")
     print(json.dumps(booking.check_slot_availability("DRIVER_LICENSE"), indent=2))
+

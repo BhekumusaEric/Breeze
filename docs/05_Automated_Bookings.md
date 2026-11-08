@@ -43,3 +43,4 @@ flowchart TD
 ## 4. Ethical & Fair Usage Safeguards
 * **Anti-Scalping Rule:** Breeze strictly reserves appointments under the authenticated legal identity of the student user. It cannot be used by middlemen or brokers to hoard and resell slots.
 * **One Booking per Service:** The system enforces a strict rule of 1 active booking per civic service per user.
+

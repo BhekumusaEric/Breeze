@@ -134,3 +134,4 @@ if __name__ == "__main__":
     vault = BreezeVaultServer()
     print("=== Breeze Vault MCP Server Online ===")
     print(json.dumps(vault.get_full_profile(), indent=2))
+

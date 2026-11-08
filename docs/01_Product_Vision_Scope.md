@@ -57,3 +57,4 @@ A young person stepping into adulthood faces a massive cliff of administrative c
 | | **Advance-Fee Scam Detector** | Scans messages/emails for fee demands (e.g. "Pay R200 for gate pass"). | NLP Intent & Red-Flag Classifier |
 | **Deals** | **Student Tech Price Tracker** | Tracks laptops, phones, and peripherals across Takealot, Amazon SA, and Makro. | Price Scraping & History MCP |
 | | **Unadvertised Student Discount Unlocker** | Catalogs student deals (Spotify, Apple Education, GitHub Student Pack). | Curated Resource Server |
+
