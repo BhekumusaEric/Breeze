@@ -50,3 +50,4 @@ npx expo start
 
 ## 🔗 Connection to Breeze MCP REST Server
 Breeze Mobile communicates directly with the local Breeze server running at `http://127.0.0.1:8765` (or `http://10.0.2.2:8765` inside Android Emulator), pulling live curated opportunities, live web mining, ATS scores, and booking slots.
+
