@@ -135,3 +135,4 @@ To enable these integrations, add the respective MCP servers to your Antigravity
 * **Zero Tracking:** Breeze accesses Gmail strictly in read/draft mode for application-specific queries.
 * **Local Parsing:** Email content is evaluated using local heuristics and verified LLM endpoints without training third-party public models.
 * **User Control:** Breeze will **never** send an email or accept an interview without explicit, human-in-the-loop confirmation.
+

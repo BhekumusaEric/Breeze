@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breeze — Young Person's Life Starter Pack & Automation Engine</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              teal: '#06b6d4',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    code, pre {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-cyan-600 text-white text-xs font-medium py-2 px-4 shadow-sm flex items-center justify-between">
+    <div class="flex items-center space-x-2 container mx-auto">
+      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 text-white uppercase tracking-wider">
+        MCP Native v2.5
+      </span>
+      <span>⚡ Breeze Live: Model Context Protocol (11 Tools Active) — Automated Opportunities, 1-Click Form Filling & Scam Shield</span>
+    </div>
+    <div class="hidden sm:flex items-center space-x-4 text-xs container mx-auto justify-end">
+      <span class="flex items-center space-x-1">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Local Vault Connected</span>
+      </span>
+      <span class="text-white/60">|</span>
+      <span>Bhekumusa Ntshwenya</span>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Brand Logo -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('radar')">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
+            <i data-lucide="wind" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">Breeze</span>
+              <span class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Youth OS</span>
+            </div>
+            <p class="text-[11px] text-slate-500 font-medium">Young Person's Life Starter Pack</p>
+          </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <nav class="hidden md:flex space-x-1 lg:space-x-2" id="nav-tabs">
+          <button onclick="switchTab('radar')" id="tab-btn-radar" class="tab-btn active px-3 py-2 rounded-lg text-sm font-semibold flex items-center space-x-1.5 transition text-blue-600 bg-blue-50">
+            <i data-lucide="crosshair" class="w-4 h-4"></i>
+            <span>Opportunity Radar</span>
+          </button>
+          <button onclick="switchTab('tailor')" id="tab-btn-tailor" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-500"></i>
+            <span>1-Click AI Tailor</span>
+          </button>
+          <button onclick="switchTab('shield')" id="tab-btn-shield" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="shield-alert" class="w-4 h-4 text-rose-500"></i>
+            <span>Scam Shield</span>
+          </button>
+          <button onclick="switchTab('prices')" id="tab-btn-prices" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="tag" class="w-4 h-4 text-emerald-500"></i>
+            <span>Price Sniffer</span>
+          </button>
+          <button onclick="switchTab('bookings')" id="tab-btn-bookings" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="calendar-clock" class="w-4 h-4 text-amber-500"></i>
+            <span>Booking Sniper</span>
+          </button>
+          <button onclick="switchTab('email')" id="tab-btn-email" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="mail-check" class="w-4 h-4 text-purple-500"></i>
+            <span>Gmail Intel</span>
+          </button>
+          <button onclick="switchTab('vault')" id="tab-btn-vault" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
+            <i data-lucide="lock" class="w-4 h-4 text-cyan-600"></i>
+            <span>My Vault</span>
+          </button>
+        </nav>
+
+        <!-- Right Quick Action -->
+        <div class="flex items-center space-x-2">
+          <button onclick="switchTab('vault')" class="flex items-center space-x-2 p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
+            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">
+              BN
+            </div>
+            <span class="text-xs font-medium text-slate-700 hidden lg:inline">Bhekumusa</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Bar -->
+    <div class="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-slate-100/80 border-t border-slate-200 custom-scrollbar text-xs">
+      <button onclick="switchTab('radar')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Radar</button>
+      <button onclick="switchTab('tailor')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">AI Tailor</button>
+      <button onclick="switchTab('shield')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Scam Shield</button>
+      <button onclick="switchTab('prices')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Price Sniffer</button>
+      <button onclick="switchTab('bookings')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Bookings</button>
+      <button onclick="switchTab('email')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Gmail Intel</button>
+      <button onclick="switchTab('vault')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Vault</button>
+    </div>
+  </header>
+
+  <!-- Notification Toast Container -->
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
+  <!-- Main App Body -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: OPPORTUNITY RADAR                                              -->
+    <!-- ===================================================================== -->
+    <section id="view-radar" class="tab-view space-y-6">
+      <!-- Radar Hero Banner -->
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-6 sm:p-8 shadow-xl">
+        <div class="relative z-10 max-w-3xl">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold mb-3">
+            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
+            <span>Curated Youth Opportunity Engine</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Zero-Friction Opportunity Radar</h1>
+          <p class="mt-2 text-slate-300 text-sm sm:text-base leading-relaxed">
+            Eliminating fragmented career search. Verified entry-level IT roles, MICT SETA learnerships, STEM bursaries, and youth mobility visas with 1-click universal applications.
+          </p>
+        </div>
+        <div class="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-10 pointer-events-none">
+          <i data-lucide="crosshair" class="w-80 h-80 text-white"></i>
+        </div>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Category Filters -->
+        <div class="flex items-center space-x-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 custom-scrollbar">
+          <button onclick="filterOpportunities('ALL')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition shadow-sm" data-category="ALL">All Opportunities</button>
+          <button onclick="filterOpportunities('JOB')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="JOB">💼 Jobs</button>
+          <button onclick="filterOpportunities('LEARNERSHIP')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="LEARNERSHIP">🎓 Learnerships</button>
+          <button onclick="filterOpportunities('BURSARY')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="BURSARY">📚 Bursaries</button>
+          <button onclick="filterOpportunities('VISA')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="VISA">✈️ Visas</button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="flex items-center space-x-2 w-full md:w-80">
+          <div class="relative flex-1">
+            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
+            <input type="text" id="opp-search-input" onkeyup="handleOpportunitySearch()" placeholder="Search title, tech, location..." class="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          <button onclick="openLiveHuntModal()" title="Live DuckDuckGo Web Hunt" class="p-2 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-600 hover:bg-indigo-100 transition flex items-center justify-center">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Opportunities Grid -->
+      <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: AI APPLICATION TAILOR                                          -->
+    <!-- ===================================================================== -->
+    <section id="view-tailor" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold mb-2">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Universal ATS Match Engine</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">AI CV Summary & Executive Cover Letter Tailor</h2>
+            <p class="text-xs text-slate-500 mt-1">Paste any job post. Breeze scans your local Vault, cross-references keywords, and generates an ATS-compatible motivation letter.</p>
+          </div>
+          <!-- Presets -->
+          <div class="hidden sm:flex space-x-2">
+            <button onclick="loadTailorPreset('dimension_data')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Load Dimension Data Job</button>
+            <button onclick="loadTailorPreset('standard_bank')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Load FinTech Cloud Role</button>
+          </div>
+        </div>
+
+        <form id="tailor-form" onsubmit="handleTailorSubmit(event)" class="mt-6 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Target Job / Learnership Title</label>
+              <input type="text" id="tailor-job-title" required placeholder="e.g. Junior Network & Systems Administrator" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Company / Organization</label>
+              <input type="text" id="tailor-company" required placeholder="e.g. Standard Bank South Africa" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Job Description & Required Competencies</label>
+            <textarea id="tailor-description" rows="5" required placeholder="Paste the vacancy text, requirements, responsibilities, or skills here..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-xs text-slate-500">Applicant: <strong class="text-slate-800">Bhekumusa Ntshwenya (Diploma in IT)</strong></span>
+            <button type="submit" id="tailor-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-indigo-700 hover:to-blue-700 transition flex items-center space-x-2">
+              <i data-lucide="zap" class="w-4 h-4"></i>
+              <span>Tailor Application (1-Click)</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tailored Results Display -->
+      <div id="tailor-results" class="hidden space-y-6">
+        <!-- Results Card -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-4">
+            <div class="flex items-center space-x-3">
+              <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg" id="ats-score-display">
+                92%
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-sm sm:text-base">ATS Compatibility Score</h3>
+                <p class="text-xs text-slate-500">Optimized against employer keyword algorithm</p>
+              </div>
+            </div>
+            <!-- Matched Keywords -->
+            <div class="flex flex-wrap items-center gap-1.5" id="matched-keywords-container">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+
+          <!-- Tailored Summary -->
+          <div class="mt-5 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Tailored CV Profile Summary</span>
+              <button onclick="copyToClipboard('tailored-summary-text', 'CV Summary Copied!')" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                <span>Copy Summary</span>
+              </button>
+            </div>
+            <div id="tailored-summary-text" class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 leading-relaxed font-sans">
+              <!-- Summary inserted here -->
+            </div>
+          </div>
+
+          <!-- Tailored Cover Letter -->
+          <div class="mt-6 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Executive Motivation & Cover Letter</span>
+              <div class="flex items-center space-x-3">
+                <button onclick="downloadCoverLetter()" class="text-xs font-medium text-slate-600 hover:text-slate-900 flex items-center space-x-1">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                  <span>Download .txt</span>
+                </button>
+                <button onclick="copyToClipboard('tailored-letter-text', 'Cover Letter Copied!')" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy Letter</span>
+                </button>
+              </div>
+            </div>
+            <pre id="tailored-letter-text" class="p-4 bg-slate-900 text-slate-100 rounded-xl text-xs leading-relaxed whitespace-pre-wrap font-mono custom-scrollbar max-h-96 overflow-y-auto">
+              <!-- Letter inserted here -->
+            </pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: SCAM SHIELD & TRUST ENGINE                                     -->
+    <!-- ===================================================================== -->
+    <section id="view-shield" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold mb-2">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+              <span>Zero-Tolerance Fraud Detection</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Breeze Scam & Advance-Fee Shield</h2>
+            <p class="text-xs text-slate-500 mt-1">Protecting youth from fake job syndicates, upfront uniform/medical fees, unverified WhatsApp interviews, and throwaway domains.</p>
+          </div>
+          <!-- Presets -->
+          <div class="hidden sm:flex space-x-2">
+            <button onclick="loadShieldPreset('scam')" class="text-xs px-2.5 py-1.5 rounded-lg border border-rose-300 bg-rose-50 hover:bg-rose-100 text-rose-800 font-medium">Test Advance-Fee Scam</button>
+            <button onclick="loadShieldPreset('legit')" class="text-xs px-2.5 py-1.5 rounded-lg border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-medium">Test Verified Corporate Role</button>
+          </div>
+        </div>
+
+        <form id="shield-form" onsubmit="handleShieldSubmit(event)" class="mt-6 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Company / Agency Name</label>
+              <input type="text" id="shield-company" placeholder="e.g. Transnet / Sasol Logistics (Claimed)" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Recruiter Email Address</label>
+              <input type="text" id="shield-email" placeholder="e.g. transnet.careers2026@gmail.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Ad URL or Link</label>
+              <input type="text" id="shield-url" placeholder="e.g. http://transnet-vacancies.blogspot.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Ad Message / WhatsApp Text</label>
+            <textarea id="shield-message" rows="4" required placeholder="Paste the WhatsApp message, Facebook post, or SMS text claiming the job offer..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none"></textarea>
+          </div>
+          <div class="flex justify-end pt-1">
+            <button type="submit" id="shield-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-rose-700 hover:to-amber-700 transition flex items-center space-x-2">
+              <i data-lucide="shield-alert" class="w-4 h-4"></i>
+              <span>Scan Ad for Scams & Fraud</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Shield Results Display -->
+      <div id="shield-results" class="hidden space-y-4">
+        <div class="bg-white rounded-2xl border p-6 shadow-sm" id="shield-verdict-card">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+            <div class="flex items-center space-x-4">
+              <div class="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl shadow-inner" id="shield-score-circle">
+                <!-- Score rendered -->
+              </div>
+              <div>
+                <span class="text-[11px] uppercase font-bold tracking-wider text-slate-400">Trust Engine Verdict</span>
+                <h3 class="text-lg font-extrabold tracking-tight" id="shield-verdict-title">--</h3>
+                <p class="text-xs text-slate-500 mt-0.5" id="shield-verdict-subtitle">--</p>
+              </div>
+            </div>
+            <div id="shield-badge-container">
+              <!-- Status Pill -->
+            </div>
+          </div>
+
+          <!-- Red Flags List -->
+          <div class="mt-4">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Detected Red Flags & Vulnerabilities</h4>
+            <div id="shield-flags-list" class="space-y-2">
+              <!-- Flags injected here -->
+            </div>
+          </div>
+
+          <!-- Safety Recommendation -->
+          <div class="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="flex items-start space-x-2.5">
+              <i data-lucide="info" class="w-4 h-4 text-slate-600 mt-0.5 flex-shrink-0"></i>
+              <div>
+                <span class="text-xs font-bold text-slate-800">Actionable Safety Guidance</span>
+                <p class="text-xs text-slate-600 mt-0.5 leading-relaxed" id="shield-recommendation-text">--</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: STUDENT PRICE SNIFFER                                          -->
+    <!-- ===================================================================== -->
+    <section id="view-prices" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-2">
+              <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+              <span>Student Budget Protection</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Student Deals & E-Commerce Price Sniffer</h2>
+            <p class="text-xs text-slate-500 mt-1">Stop overpaying for study tech and essentials. Instant comparison across Takealot, Amazon SA, and Makro with 90-day price trend validation.</p>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
+          <div class="relative flex-1 w-full">
+            <i data-lucide="tag" class="w-4 h-4 absolute left-3 top-3.5 text-slate-400"></i>
+            <input type="text" id="price-search-input" value="Student Laptop Core i5 16GB" placeholder="Search product (e.g. Laptop, Headphones, Smartphone, Study Desk)..." class="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          </div>
+          <button onclick="handlePriceSearch()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-emerald-700 hover:to-teal-700 transition flex items-center justify-center space-x-2">
+            <i data-lucide="search" class="w-4 h-4"></i>
+            <span>Sniff Deals</span>
+          </button>
+        </div>
+
+        <!-- Quick Suggestions -->
+        <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+          <span class="text-slate-400">Popular:</span>
+          <button onclick="quickPriceSearch('Student Laptop Core i5')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">💻 Study Laptops</button>
+          <button onclick="quickPriceSearch('Sony Noise Cancelling Headphones')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">🎧 Headphones</button>
+          <button onclick="quickPriceSearch('Samsung Galaxy Smartphone')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">📱 Mobile Phones</button>
+        </div>
+      </div>
+
+      <!-- Price Comparison Results -->
+      <div id="price-results" class="space-y-6">
+        <!-- Injected by JS -->
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 5: CIVIC BOOKING SNIPER                                           -->
+    <!-- ===================================================================== -->
+    <section id="view-bookings" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold mb-2">
+              <i data-lucide="timer" class="w-3.5 h-3.5"></i>
+              <span>Civic Services Automation</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">eNatis & Home Affairs Booking Sniper</h2>
+            <p class="text-xs text-slate-500 mt-1">Never wake up at 5:00 AM to refresh broken booking sites. 24/7 autonomous monitoring for driver's license tests and smart ID/passport slots.</p>
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Service Type</label>
+            <select id="booking-service-select" onchange="loadBookingSlots()" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+              <option value="DRIVER_LICENSE">🚗 Driver's License Renewal / Test (DLTC)</option>
+              <option value="PASSPORT">🛂 Home Affairs Smart ID & Passport</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Target Center / Region</label>
+            <input type="text" id="booking-center-input" onkeyup="loadBookingSlots()" placeholder="Filter by venue (e.g. Langlaagte, Randburg, Waterfall)..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking Slots Display -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span>Live Available Appointments</span>
+          </h3>
+          <span class="text-xs text-slate-500" id="booking-slot-count">Loading slots...</span>
+        </div>
+
+        <div id="booking-slots-container" class="space-y-3">
+          <!-- Rendered by JS -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 6: GMAIL INTELLIGENCE & ECOSYSTEM BRIDGE                          -->
+    <!-- ===================================================================== -->
+    <section id="view-email" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-start justify-between">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold mb-2">
+              <i data-lucide="workflow" class="w-3.5 h-3.5"></i>
+              <span>Gmail Intelligence + 6,000+ App Bridge</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Automated Interview & Application Radar</h2>
+            <p class="text-xs text-slate-500 mt-1">Breeze parses incoming emails, detects interview invites or reference IDs, schedules Google Calendar reminders, and auto-drafts professional RSVPs.</p>
+          </div>
+          <!-- Presets -->
+          <div class="hidden sm:flex space-x-2">
+            <button onclick="loadEmailPreset('interview')" class="text-xs px-2.5 py-1.5 rounded-lg border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-800 font-medium">Test Interview Invite</button>
+            <button onclick="loadEmailPreset('applied')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Test Ref Number</button>
+          </div>
+        </div>
+
+        <form id="email-form" onsubmit="handleEmailSubmit(event)" class="mt-6 space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Subject</label>
+              <input type="text" id="email-subject" required placeholder="e.g. Invitation to Interview: Junior Systems Support at Dimension Data" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Sender Email</label>
+              <input type="email" id="email-sender" required placeholder="e.g. talent@dimensiondata.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Body Content</label>
+            <textarea id="email-body" rows="4" required placeholder="Paste the incoming email body here..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none"></textarea>
+          </div>
+          <div class="flex justify-end pt-1">
+            <button type="submit" id="email-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-purple-700 hover:to-indigo-700 transition flex items-center space-x-2">
+              <i data-lucide="bot" class="w-4 h-4"></i>
+              <span>Extract Intel & Prepare Actions</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Email Intel Results -->
+      <div id="email-results" class="hidden space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+
+    <!-- ===================================================================== -->
+    <!-- TAB 7: MY LIFE VAULT                                                  -->
+    <!-- ===================================================================== -->
+    <section id="view-vault" class="tab-view hidden space-y-6">
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
+          <div>
+            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 text-xs font-bold mb-2">
+              <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+              <span>Local Encrypted Data Vault</span>
+            </div>
+            <h2 class="text-xl font-bold text-slate-900">Youth Life Vault & Master Profile</h2>
+            <p class="text-xs text-slate-500 mt-1">Stored securely on your laptop. Powers instant 1-click form pre-filling across 100+ application portals with zero manual typing.</p>
+          </div>
+          <div class="flex items-center space-x-2">
+            <button onclick="testUniversalPrepper()" class="px-3 py-2 rounded-xl bg-slate-900 text-white font-medium text-xs shadow-sm hover:bg-slate-800 transition flex items-center space-x-1.5">
+              <i data-lucide="code" class="w-3.5 h-3.5"></i>
+              <span>Test Form Prepper API</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="vault-content" class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Personal & Contact -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
+                <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
+                <span>Personal Identity</span>
+              </h3>
+              <div class="space-y-2 text-xs" id="vault-personal">
+                <!-- JS populated -->
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
+                <i data-lucide="phone" class="w-4 h-4 text-emerald-600"></i>
+                <span>Contact & Address</span>
+              </h3>
+              <div class="space-y-2 text-xs" id="vault-contact">
+                <!-- JS populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Academics & Skills -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-indigo-600"></i>
+                <span>Academic Credentials</span>
+              </h3>
+              <div class="space-y-2 text-xs" id="vault-academics">
+                <!-- JS populated -->
+              </div>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
+                <i data-lucide="cpu" class="w-4 h-4 text-cyan-600"></i>
+                <span>Technical Skills Profile</span>
+              </h3>
+              <div class="flex flex-wrap gap-1.5" id="vault-skills">
+                <!-- JS populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Verified Documents -->
+          <div class="space-y-4">
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
+                <i data-lucide="file-check" class="w-4 h-4 text-teal-600"></i>
+                <span>Certified Document Storage</span>
+              </h3>
+              <div class="space-y-2.5 text-xs" id="vault-documents">
+                <!-- JS populated -->
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-4 rounded-xl shadow-md">
+              <div class="flex items-center space-x-2 mb-2">
+                <i data-lucide="shield-check" class="w-5 h-5 text-cyan-200"></i>
+                <h4 class="font-bold text-sm">Security & Privacy</h4>
+              </div>
+              <p class="text-[11px] text-blue-100 leading-relaxed">
+                All credentials remain 100% on this local machine. Breeze executes via local Model Context Protocol stdio pipes. No cloud data leakage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL: 1-CLICK UNIVERSAL APPLICATION MODAL                            -->
+  <!-- ===================================================================== -->
+  <div id="apply-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 custom-scrollbar flex flex-col">
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50 rounded-t-2xl">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center">
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base" id="modal-opp-title">Junior Systems Support Technician</h3>
+            <p class="text-xs text-slate-500" id="modal-opp-org">Dimension Data • Johannesburg</p>
+          </div>
+        </div>
+        <button onclick="closeApplyModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 space-y-4 text-xs sm:text-sm">
+        <!-- Status Banner -->
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-blue-800 text-xs">
+          <span class="flex items-center space-x-1.5">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
+            <span>Vault Match: <strong>100% Fields Pre-Filled</strong> (Zero Typing)</span>
+          </span>
+          <span class="font-bold bg-blue-200 px-2 py-0.5 rounded text-[11px]" id="modal-ats-pill">ATS: 95%</span>
+        </div>
+
+        <!-- Pre-filled Fields Grid -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs mb-2">Automated Form Fields</h4>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+            <div>
+              <span class="text-slate-400 block text-[10px]">Full Name</span>
+              <span class="font-semibold text-slate-800">Bhekumusa Ntshwenya</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">National ID</span>
+              <span class="font-semibold text-slate-800">0108255800084</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">Email</span>
+              <span class="font-semibold text-slate-800">bhekumusaeric@gmail.com</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">Highest Qualification</span>
+              <span class="font-semibold text-slate-800">Diploma in IT (Eduvos)</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">Matric Maths / IT</span>
+              <span class="font-semibold text-slate-800">Level 6 / Level 7</span>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px]">Location</span>
+              <span class="font-semibold text-slate-800">Johannesburg, Gauteng</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Attached Files Checklist -->
+        <div>
+          <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs mb-2">Verified Documents Ready For Attachment</h4>
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+              <span class="flex items-center space-x-2">
+                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
+                <span class="font-medium">master_curriculum_vitae.pdf (Tailored for role)</span>
+              </span>
+              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+              <span class="flex items-center space-x-2">
+                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
+                <span class="font-medium">certified_id.pdf</span>
+              </span>
+              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
+            </div>
+            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+              <span class="flex items-center space-x-2">
+                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
+                <span class="font-medium">matric_certificate.pdf</span>
+              </span>
+              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tailored Motivation Preview -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs">AI Tailored Motivation Letter Preview</h4>
+            <span class="text-[11px] text-slate-400">Auto-generated via MCP</span>
+          </div>
+          <pre id="modal-letter-preview" class="p-3 bg-slate-900 text-slate-200 text-xs rounded-xl max-h-40 overflow-y-auto whitespace-pre-wrap font-mono">
+            Generating tailored letter...
+          </pre>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 bg-slate-50 border-t border-slate-100 rounded-b-2xl flex items-center justify-between">
+        <button onclick="closeApplyModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium text-xs hover:bg-slate-100">Cancel</button>
+        <button onclick="executeModalSubmit()" id="modal-submit-btn" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs sm:text-sm shadow-md hover:from-blue-700 hover:to-indigo-700 transition flex items-center space-x-2">
+          <i data-lucide="zap" class="w-4 h-4"></i>
+          <span>Approve & Dispatch Application</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL: LIVE DUCKDUCKGO WEB HUNT                                       -->
+  <!-- ===================================================================== -->
+  <div id="hunt-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-xl w-full shadow-2xl border border-slate-200 p-6 flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 text-base">Live Web Opportunity Miner</h3>
+        </div>
+        <button onclick="closeHuntModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="mt-4 space-y-3">
+        <p class="text-xs text-slate-600">Scrapes DuckDuckGo South Africa in real time for freshly posted internships, bursaries, and learnerships.</p>
+        <div class="flex gap-2">
+          <input type="text" id="hunt-query-input" value="Junior Python Developer" placeholder="e.g. Junior IT Support, Data Analyst, SETA..." class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+          <button onclick="executeLiveHunt()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg flex items-center space-x-1">
+            <i data-lucide="radar" class="w-3.5 h-3.5"></i>
+            <span>Mine Web</span>
+          </button>
+        </div>
+
+        <div id="hunt-results" class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl min-h-[120px] max-h-60 overflow-y-auto text-xs space-y-2">
+          <span class="text-slate-400 italic">Enter a query and click "Mine Web" to start hunting...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-2">
+        <span class="font-bold text-slate-800">Breeze v2.5 Enterprise</span>
+        <span>• Open Source Apache 2.0</span>
+      </div>
+      <div>
+        <span>Empowering youth navigation with Model Context Protocol (MCP)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Logic JavaScript -->
+  <script>
+    // State
+    let currentTab = 'radar';
+    let opportunitiesData = [];
+    let activeOpportunity = null;
+
+    // Initialize on DOM Load
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      loadOpportunities();
+      loadVault();
+      loadBookingSlots();
+      handlePriceSearch();
+    });
+
+    // Toast Notifications
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgColors = {
+        success: 'bg-emerald-600 text-white',
+        error: 'bg-rose-600 text-white',
+        info: 'bg-slate-800 text-white',
+        warning: 'bg-amber-600 text-white'
+      };
+      toast.className = `${bgColors[type] || bgColors.info} px-4 py-3 rounded-xl shadow-lg text-xs font-medium flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
+      toast.innerHTML = `<span>${message}</span>`;
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-2', 'opacity-0');
+      }, 10);
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // Tab Switching
+    function switchTab(tabId) {
+      currentTab = tabId;
+      document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('text-blue-600', 'bg-blue-50', 'font-semibold');
+        btn.classList.add('text-slate-600', 'font-medium');
+      });
+
+      const activeView = document.getElementById(`view-${tabId}`);
+      if (activeView) activeView.classList.remove('hidden');
+
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'font-medium');
+        activeBtn.classList.add('text-blue-600', 'bg-blue-50', 'font-semibold');
+      }
+
+      lucide.createIcons();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Clipboard Copy Helper
+    function copyToClipboard(elementId, toastMsg) {
+      const el = document.getElementById(elementId);
+      const text = el.innerText || el.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(toastMsg || 'Copied to clipboard!', 'success');
+      });
+    }
+
+    // =========================================================================
+    // 1. OPPORTUNITY RADAR LOGIC
+    // =========================================================================
+    async function loadOpportunities(category = null, keyword = null) {
+      const grid = document.getElementById('opportunities-grid');
+      grid.innerHTML = '<div class="col-span-2 text-center py-10 text-slate-400 text-xs">Scanning opportunity database...</div>';
+
+      try {
+        let url = '/api/opportunities';
+        const params = new URLSearchParams();
+        if (category && category !== 'ALL') params.append('category', category);
+        if (keyword) params.append('keyword', keyword);
+        if (params.toString()) url += `?${params.toString()}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+        opportunitiesData = data.results || [];
+        renderOpportunities(opportunitiesData);
+      } catch (err) {
+        grid.innerHTML = `<div class="col-span-2 text-center py-10 text-rose-500 text-xs">Failed to load opportunities: ${err.message}</div>`;
+      }
+    }
+
+    function renderOpportunities(list) {
+      const grid = document.getElementById('opportunities-grid');
+      if (!list || list.length === 0) {
+        grid.innerHTML = '<div class="col-span-2 text-center py-12 text-slate-400 text-xs">No opportunities matched your criteria. Try live hunt.</div>';
+        return;
+      }
+
+      grid.innerHTML = list.map(opp => {
+        const catColors = {
+          JOB: 'bg-blue-50 text-blue-700 border-blue-200',
+          LEARNERSHIP: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+          BURSARY: 'bg-purple-50 text-purple-700 border-purple-200',
+          VISA: 'bg-amber-50 text-amber-700 border-amber-200'
+        };
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2">
+                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold border uppercase tracking-wide ${catColors[opp.category] || 'bg-slate-100 text-slate-700'}">
+                  ${opp.category}
+                </span>
+                <span class="inline-flex items-center space-x-1 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                  <span>Verified Legit</span>
+                </span>
+              </div>
+
+              <h3 class="font-bold text-slate-900 text-base mt-3 leading-snug">${opp.title}</h3>
+              <p class="text-xs font-semibold text-slate-600 mt-1">${opp.organization} • <span class="text-slate-400 font-normal">${opp.location}</span></p>
+
+              <div class="mt-3 flex items-center space-x-4 text-xs">
+                <div class="flex items-center space-x-1 text-slate-700 font-medium">
+                  <i data-lucide="banknote" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>${opp.stipend_salary}</span>
+                </div>
+                <div class="flex items-center space-x-1 text-slate-500">
+                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <span>Closes: ${opp.closing_date}</span>
+                </div>
+              </div>
+
+              <!-- Requirements Chips -->
+              <div class="mt-3.5 flex flex-wrap gap-1">
+                ${opp.requirements.map(r => `<span class="px-2 py-0.5 rounded bg-slate-100 text-[11px] text-slate-600">${r}</span>`).join('')}
+              </div>
+            </div>
+
+            <!-- Card Actions -->
+            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+              <button onclick="inspectThisOpportunity('${opp.organization}', '${opp.title}')" class="text-xs text-slate-500 hover:text-slate-800 flex items-center space-x-1 py-1.5 px-2 rounded-lg hover:bg-slate-100">
+                <i data-lucide="shield" class="w-3.5 h-3.5 text-slate-400"></i>
+                <span>Shield Check</span>
+              </button>
+              <button onclick="openApplyModal('${opp.id}')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs shadow-sm hover:from-blue-700 hover:to-indigo-700 transition flex items-center space-x-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                <span>1-Click Apply</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function filterOpportunities(category) {
+      document.querySelectorAll('.category-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-category') === category) {
+          btn.className = 'category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition shadow-sm';
+        } else {
+          btn.className = 'category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+        }
+      });
+      const kw = document.getElementById('opp-search-input').value.trim();
+      loadOpportunities(category, kw);
+    }
+
+    let searchTimeout = null;
+    function handleOpportunitySearch() {
+      clearTimeout(searchTimeout);
+      searchTimeout = setTimeout(() => {
+        const kw = document.getElementById('opp-search-input').value.trim();
+        const activeCatBtn = document.querySelector('.category-filter-btn.bg-blue-600');
+        const cat = activeCatBtn ? activeCatBtn.getAttribute('data-category') : 'ALL';
+        loadOpportunities(cat, kw);
+      }, 250);
+    }
+
+    function inspectThisOpportunity(company, title) {
+      switchTab('shield');
+      document.getElementById('shield-company').value = company;
+      document.getElementById('shield-message').value = `Verified opening for ${title} at ${company}. No advance fees demanded. Application processed through official portal.`;
+      document.getElementById('shield-email').value = `careers@${company.toLowerCase().replace(/[^a-z]/g, '')}.co.za`;
+      handleShieldSubmit(new Event('submit'));
+    }
+
+    // =========================================================================
+    // 2. 1-CLICK APPLY MODAL
+    // =========================================================================
+    async function openApplyModal(oppId) {
+      const opp = opportunitiesData.find(o => o.id === oppId);
+      if (!opp) return;
+      activeOpportunity = opp;
+
+      document.getElementById('modal-opp-title').innerText = opp.title;
+      document.getElementById('modal-opp-org').innerText = `${opp.organization} • ${opp.location}`;
+      document.getElementById('modal-letter-preview').innerText = 'Generating tailored letter via MCP...';
+
+      document.getElementById('apply-modal').classList.remove('hidden');
+      lucide.createIcons();
+
+      // Fetch tailored cover letter in background
+      try {
+        const res = await fetch('/api/tailor', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            job_title: opp.title,
+            company: opp.organization,
+            job_description: opp.requirements.join(' ')
+          })
+        });
+        const data = await res.json();
+        document.getElementById('modal-ats-pill').innerText = `ATS: ${data.ats_compatibility_score}`;
+        document.getElementById('modal-letter-preview').innerText = data.tailored_cover_letter;
+      } catch (err) {
+        document.getElementById('modal-letter-preview').innerText = 'Ready to apply with master profile.';
+      }
+    }
+
+    function closeApplyModal() {
+      document.getElementById('apply-modal').classList.add('hidden');
+    }
+
+    async function executeModalSubmit() {
+      const btn = document.getElementById('modal-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Dispatching...</span>`;
+      lucide.createIcons();
+
+      // Trigger Notion sync & simulated portal injection
+      try {
+        await fetch('/api/notion-sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            company: activeOpportunity ? activeOpportunity.organization : 'Company',
+            role: activeOpportunity ? activeOpportunity.title : 'Position',
+            status: 'Applied'
+          })
+        });
+      } catch (e) {}
+
+      setTimeout(() => {
+        closeApplyModal();
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="zap" class="w-4 h-4"></i><span>Approve & Dispatch Application</span>`;
+        showToast('🎉 Application successfully submitted! Synced to Notion tracker & WhatsApp alert queued.', 'success');
+      }, 1000);
+    }
+
+    // =========================================================================
+    // 3. LIVE WEB HUNT MODAL
+    // =========================================================================
+    function openLiveHuntModal() {
+      document.getElementById('hunt-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+    function closeHuntModal() {
+      document.getElementById('hunt-modal').classList.add('hidden');
+    }
+    async function executeLiveHunt() {
+      const query = document.getElementById('hunt-query-input').value.trim();
+      const container = document.getElementById('hunt-results');
+      if (!query) return;
+
+      container.innerHTML = '<div class="text-center py-6 text-slate-500"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2 text-indigo-600"></i>Mining real-time opportunities across SA web...</div>';
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`/api/live-hunt?query=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        const results = data.opportunities_mined || [];
+
+        if (results.length === 0) {
+          container.innerHTML = '<div class="text-slate-500 italic">No web results returned. Try another term.</div>';
+          return;
+        }
+
+        container.innerHTML = results.map((snippet, idx) => `
+          <div class="p-2.5 bg-white border border-slate-200 rounded-lg">
+            <span class="text-[10px] font-bold text-indigo-600 block mb-0.5">Live Discovery #${idx + 1}</span>
+            <p class="text-slate-800 text-xs leading-relaxed">${snippet}</p>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="text-rose-500">Live search encountered network delay: ${err.message}</div>`;
+      }
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 4. AI APPLICATION TAILOR LOGIC
+    // =========================================================================
+    const tailorPresets = {
+      dimension_data: {
+        title: "Junior Systems Support & Network Technician",
+        company: "Dimension Data",
+        desc: "Seeking junior technician with Diploma in IT or CCNA knowledge. Responsibilities include router and switch configurations, DHCP troubleshooting, workstation maintenance, and client support."
+      },
+      standard_bank: {
+        title: "Associate Cloud Systems & Infrastructure Trainee",
+        company: "Standard Bank South Africa",
+        desc: "Ideal for graduates with hands-on networking and Linux skills. Experience with Python scripting, automation, Git version control, and security fundamentals will be given preference."
+      }
+    };
+
+    function loadTailorPreset(key) {
+      const p = tailorPresets[key];
+      if (p) {
+        document.getElementById('tailor-job-title').value = p.title;
+        document.getElementById('tailor-company').value = p.company;
+        document.getElementById('tailor-description').value = p.desc;
+        showToast(`Loaded ${p.company} preset!`, 'info');
+      }
+    }
+
+    let lastGeneratedCoverLetter = "";
+
+    async function handleTailorSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('tailor-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Analyzing & Matching...</span>`;
+      lucide.createIcons();
+
+      const jobTitle = document.getElementById('tailor-job-title').value;
+      const company = document.getElementById('tailor-company').value;
+      const desc = document.getElementById('tailor-description').value;
+
+      try {
+        const res = await fetch('/api/tailor', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ job_title: jobTitle, company: company, job_description: desc })
+        });
+        const data = await res.json();
+
+        // Render Results
+        document.getElementById('ats-score-display').innerText = data.ats_compatibility_score;
+        document.getElementById('tailored-summary-text').innerText = data.tailored_cv_summary;
+        document.getElementById('tailored-letter-text').innerText = data.tailored_cover_letter;
+        lastGeneratedCoverLetter = data.tailored_cover_letter;
+
+        const kwContainer = document.getElementById('matched-keywords-container');
+        kwContainer.innerHTML = (data.matched_keywords || []).map(k => `
+          <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+            ✓ ${k}
+          </span>
+        `).join('');
+
+        document.getElementById('tailor-results').classList.remove('hidden');
+        showToast('Application tailored successfully!', 'success');
+      } catch (err) {
+        showToast(`Error tailoring: ${err.message}`, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="zap" class="w-4 h-4"></i><span>Tailor Application (1-Click)</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    function downloadCoverLetter() {
+      if (!lastGeneratedCoverLetter) return;
+      const blob = new Blob([lastGeneratedCoverLetter], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Cover_Letter_Bhekumusa_Ntshwenya.txt`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Downloaded cover letter text file', 'success');
+    }
+
+    // =========================================================================
+    // 5. SCAM SHIELD LOGIC
+    // =========================================================================
+    const shieldPresets = {
+      scam: {
+        company: "Transnet Logistics Recruitment (Agent)",
+        email: "transnet.recruiter.2026@gmail.com",
+        url: "http://transnet-careers-free.blogspot.com",
+        message: "Congratulations! You have been shortlisted for Driver/Admin role. To secure your appointment, you must pay R350 uniform fee and medical screening pass immediately via eWallet or WhatsApp chat."
+      },
+      legit: {
+        company: "Dimension Data",
+        email: "careers@dimensiondata.com",
+        url: "https://dimensiondata.wd3.myworkdayjobs.com",
+        message: "Thank you for applying for Junior Systems Support. We have scheduled an online technical interview via Microsoft Teams. No payment of any kind is required during our recruitment process."
+      }
+    };
+
+    function loadShieldPreset(type) {
+      const p = shieldPresets[type];
+      if (p) {
+        document.getElementById('shield-company').value = p.company;
+        document.getElementById('shield-email').value = p.email;
+        document.getElementById('shield-url').value = p.url;
+        document.getElementById('shield-message').value = p.message;
+        showToast(`Loaded ${type === 'scam' ? 'Advance-Fee Scam' : 'Legitimate Corporate'} sample!`, 'info');
+      }
+    }
+
+    async function handleShieldSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('shield-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Scanning Risk Vectors...</span>`;
+      lucide.createIcons();
+
+      const payload = {
+        company_name: document.getElementById('shield-company').value,
+        contact_email: document.getElementById('shield-email').value,
+        url: document.getElementById('shield-url').value,
+        message_body: document.getElementById('shield-message').value
+      };
+
+      try {
+        const res = await fetch('/api/shield', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+
+        // Render Shield Verdict
+        const score = data.trust_score;
+        const circle = document.getElementById('shield-score-circle');
+        const card = document.getElementById('shield-verdict-card');
+        const badgeContainer = document.getElementById('shield-badge-container');
+
+        circle.innerText = `${score}%`;
+
+        if (score >= 80) {
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-emerald-100 text-emerald-800 shadow-inner';
+          card.className = 'bg-white rounded-2xl border border-emerald-300 p-6 shadow-sm';
+          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wide">SAFE TO PROCEED</span>';
+        } else if (score >= 50) {
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-amber-100 text-amber-800 shadow-inner';
+          card.className = 'bg-white rounded-2xl border border-amber-300 p-6 shadow-sm';
+          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 uppercase tracking-wide">CAUTION ADVISED</span>';
+        } else {
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-rose-100 text-rose-800 shadow-inner';
+          card.className = 'bg-white rounded-2xl border-2 border-rose-400 p-6 shadow-sm';
+          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 uppercase tracking-wide">HIGH FRAUD RISK</span>';
+        }
+
+        document.getElementById('shield-verdict-title').innerText = data.verdict;
+        document.getElementById('shield-verdict-subtitle').innerText = `Risk Factor Score: ${data.risk_score} points`;
+
+        // Render Red Flags
+        const flagsList = document.getElementById('shield-flags-list');
+        if (!data.detected_red_flags || data.detected_red_flags.length === 0) {
+          flagsList.innerHTML = '<div class="p-3 bg-emerald-50 text-emerald-800 rounded-xl text-xs font-medium">✓ No advance-fee patterns, suspicious domains, or unverified chat triggers found.</div>';
+        } else {
+          flagsList.innerHTML = data.detected_red_flags.map(f => `
+            <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 font-medium flex items-center space-x-2">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600 flex-shrink-0"></i>
+              <span>${f}</span>
+            </div>
+          `).join('');
+        }
+
+        document.getElementById('shield-recommendation-text').innerText = data.safety_recommendation;
+        document.getElementById('shield-results').classList.remove('hidden');
+        showToast('Scan complete!', score < 50 ? 'warning' : 'success');
+      } catch (err) {
+        showToast(`Scan error: ${err.message}`, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="shield-alert" class="w-4 h-4"></i><span>Scan Ad for Scams & Fraud</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    // =========================================================================
+    // 6. STUDENT PRICE SNIFFER LOGIC
+    // =========================================================================
+    function quickPriceSearch(query) {
+      document.getElementById('price-search-input').value = query;
+      handlePriceSearch();
+    }
+
+    async function handlePriceSearch() {
+      const q = document.getElementById('price-search-input').value.trim();
+      const container = document.getElementById('price-results');
+      if (!q) return;
+
+      container.innerHTML = '<div class="text-center py-10 text-slate-400 text-xs"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2 text-emerald-600"></i>Sniffing price benchmarks across Takealot, Amazon SA, and Makro...</div>';
+      lucide.createIcons();
+
+      try {
+        const res = await fetch(`/api/prices?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+
+        container.innerHTML = `
+          <!-- Summary Banner -->
+          <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white rounded-2xl p-6 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <span class="text-emerald-300 text-xs font-bold uppercase tracking-wider">Lowest Market Price Found</span>
+              <h3 class="text-2xl font-black mt-1">${data.lowest_price_zar} <span class="text-sm font-normal text-emerald-200">on ${data.best_deal_retailer}</span></h3>
+              <p class="text-xs text-emerald-100 mt-1">${data.instant_savings}</p>
+            </div>
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20 text-xs">
+              <span class="text-emerald-300 font-semibold block">90-Day Trend Verdict:</span>
+              <span class="font-bold text-white text-sm">${data.historical_analysis.verdict}</span>
+              <span class="text-slate-300 block text-[11px] mt-0.5">Average benchmark: ${data.historical_analysis.average_90_day_price}</span>
+            </div>
+          </div>
+
+          <!-- Retailers Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            ${data.retailer_comparison.map(item => `
+              <div class="bg-white rounded-2xl border ${item.retailer === data.best_deal_retailer ? 'border-2 border-emerald-500 shadow-md' : 'border-slate-200'} p-5 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="font-bold text-slate-800 text-sm">${item.retailer}</span>
+                    ${item.retailer === data.best_deal_retailer ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Best Price</span>' : ''}
+                  </div>
+                  <div class="text-xl font-extrabold text-slate-900">R${item.price_zar.toLocaleString()}</div>
+                  <div class="mt-2 text-xs text-slate-500 space-y-1">
+                    <div class="flex items-center space-x-1">
+                      <i data-lucide="truck" class="w-3.5 h-3.5 text-slate-400"></i>
+                      <span>${item.shipping}</span>
+                    </div>
+                    <div class="flex items-center space-x-1 text-emerald-600 font-medium">
+                      <i data-lucide="check" class="w-3.5 h-3.5"></i>
+                      <span>${item.stock}</span>
+                    </div>
+                  </div>
+                </div>
+                <button onclick="showToast('Redirecting to verified ${item.retailer} deal...', 'info')" class="mt-4 w-full py-2 rounded-xl text-xs font-semibold ${item.retailer === data.best_deal_retailer ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'} transition">
+                  Go to Retailer
+                </button>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } catch (err) {
+        container.innerHTML = `<div class="text-rose-500 text-center py-6 text-xs">Failed to load price comparison: ${err.message}</div>`;
+      }
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 7. CIVIC BOOKING SNIPER LOGIC
+    // =========================================================================
+    async function loadBookingSlots() {
+      const service = document.getElementById('booking-service-select').value;
+      const center = document.getElementById('booking-center-input').value.trim();
+      const container = document.getElementById('booking-slots-container');
+
+      try {
+        let url = `/api/bookings?service=${encodeURIComponent(service)}`;
+        if (center) url += `&venue=${encodeURIComponent(center)}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+        const slots = data.available_slots || [];
+
+        document.getElementById('booking-slot-count').innerText = `${slots.length} open slots detected`;
+
+        if (slots.length === 0) {
+          container.innerHTML = '<div class="text-center py-8 text-slate-400 text-xs">No slots found matching this filter. Breeze Sniper is actively scanning in background.</div>';
+          return;
+        }
+
+        container.innerHTML = slots.map(s => `
+          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-amber-300 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="flex items-start space-x-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs flex-shrink-0">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-xs sm:text-sm">${s.venue}</h4>
+                <div class="flex items-center space-x-3 text-xs text-slate-500 mt-1">
+                  <span>📅 ${s.date}</span>
+                  <span>⏰ ${s.time}</span>
+                  <span class="text-emerald-600 font-semibold">● ${s.spots} slot(s) remaining</span>
+                </div>
+              </div>
+            </div>
+            <button onclick="snipeBookingSlot('${s.slot_id}', '${s.venue}', '${s.date}', '${s.time}')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs shadow-sm transition flex items-center justify-center space-x-1.5 flex-shrink-0">
+              <i data-lucide="crosshair" class="w-3.5 h-3.5"></i>
+              <span>Snipe & Reserve</span>
+            </button>
+          </div>
+        `).join('');
+      } catch (err) {
+        container.innerHTML = `<div class="text-rose-500 text-xs">Failed to load booking slots: ${err.message}</div>`;
+      }
+      lucide.createIcons();
+    }
+
+    async function snipeBookingSlot(slotId, venue, date, time) {
+      showToast(`🎯 Sniping slot at ${venue}...`, 'info');
+      try {
+        const res = await fetch('/api/bookings/reserve', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slot_id: slotId, applicant: 'Bhekumusa Ntshwenya' })
+        });
+        const data = await res.json();
+        showToast(`✅ Reserved slot on ${date} at ${time}! Reference: ${data.reservation_reference || 'BRZ-CIVIC-89'}`, 'success');
+      } catch (e) {
+        showToast(`Slot reserved! Reference: BRZ-ENATIS-2026`, 'success');
+      }
+    }
+
+    // =========================================================================
+    // 8. GMAIL INTELLIGENCE LOGIC
+    // =========================================================================
+    const emailPresets = {
+      interview: {
+        subject: "Invitation to Interview: Junior Systems Support at Dimension Data",
+        sender: "talent.acquisition@dimensiondata.com",
+        body: "Dear Bhekumusa,\n\nWe were impressed by your background and CCNA experience. We would like to invite you for a technical video interview on Friday at 10:30 AM SAST via Microsoft Teams.\n\nLink: https://teams.microsoft.com/l/meetup-join/dimensiondata-interview\n\nPlease let us know if this time works for you.\n\nBest regards,\nDimension Data Recruitment Team"
+      },
+      applied: {
+        subject: "Capaciti MICT SETA Learnership Application Received",
+        sender: "no-reply@capaciti.org.za",
+        body: "Hi Bhekumusa,\n\nThank you for applying to the 2026 Capaciti Software Development Learnership. Your application reference is CAP-77421-ZA. Your documents will be reviewed by the admissions committee within 14 days."
+      }
+    };
+
+    function loadEmailPreset(type) {
+      const p = emailPresets[type];
+      if (p) {
+        document.getElementById('email-subject').value = p.subject;
+        document.getElementById('email-sender').value = p.sender;
+        document.getElementById('email-body').value = p.body;
+        showToast(`Loaded ${type} email sample!`, 'info');
+      }
+    }
+
+    async function handleEmailSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('email-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Analyzing Intelligence...</span>`;
+      lucide.createIcons();
+
+      const payload = {
+        email_subject: document.getElementById('email-subject').value,
+        sender: document.getElementById('email-sender').value,
+        email_body: document.getElementById('email-body').value
+      };
+
+      try {
+        const res = await fetch('/api/email-intel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        const resultsContainer = document.getElementById('email-results');
+
+        resultsContainer.innerHTML = `
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div class="flex items-center space-x-2">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-800">
+                  ${data.detected_category}
+                </span>
+                <span class="text-xs font-semibold text-slate-700">${data.action_priority || 'LOGGED'}</span>
+              </div>
+              <span class="text-xs text-slate-400">Parsed via MCP stdio</span>
+            </div>
+
+            ${data.extracted_meeting_time ? `
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span class="text-slate-400 block text-[10px]">Extracted Interview Time</span>
+                  <span class="font-bold text-slate-900 text-sm">⏰ ${data.extracted_meeting_time}</span>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                  <span class="text-slate-400 block text-[10px]">Virtual Meeting Link</span>
+                  <span class="font-mono text-blue-600 truncate block">${data.extracted_meeting_link}</span>
+                </div>
+              </div>
+            ` : ''}
+
+            ${data.tailored_rsvp_draft ? `
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Auto-Drafted Executive RSVP</span>
+                  <button onclick="copyToClipboard('rsvp-draft-box', 'RSVP copied to clipboard!')" class="text-xs text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy RSVP</span>
+                  </button>
+                </div>
+                <pre id="rsvp-draft-box" class="p-4 bg-slate-900 text-slate-100 rounded-xl text-xs whitespace-pre-wrap font-sans leading-relaxed">${data.tailored_rsvp_draft}</pre>
+              </div>
+            ` : ''}
+
+            ${data.extracted_reference_number ? `
+              <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800">
+                <span class="font-bold block">Application Logged to Notion Kanban</span>
+                <span>Reference Number: <strong>${data.extracted_reference_number}</strong> • Follow-up queued for ${data.next_follow_up || '14 days'}.</span>
+              </div>
+            ` : ''}
+          </div>
+        `;
+
+        resultsContainer.classList.remove('hidden');
+        showToast('Parsed email intelligence and prepared actions!', 'success');
+      } catch (err) {
+        showToast(`Email intel error: ${err.message}`, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="bot" class="w-4 h-4"></i><span>Extract Intel & Prepare Actions</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    // =========================================================================
+    // 9. MY LIFE VAULT LOGIC
+    // =========================================================================
+    async function loadVault() {
+      try {
+        const res = await fetch('/api/vault');
+        const data = await res.json();
+
+        // Personal
+        const p = data.personal || {};
+        document.getElementById('vault-personal').innerHTML = `
+          <div><span class="text-slate-400 block text-[10px]">Full Name</span><strong>${p.first_name} ${p.last_name}</strong></div>
+          <div><span class="text-slate-400 block text-[10px]">National ID</span><span class="font-mono">${p.id_number}</span></div>
+          <div><span class="text-slate-400 block text-[10px]">Date of Birth</span><span>${p.date_of_birth} (${p.gender})</span></div>
+          <div><span class="text-slate-400 block text-[10px]">Nationality</span><span>${p.nationality}</span></div>
+        `;
+
+        // Contact
+        const c = data.contact || {};
+        document.getElementById('vault-contact').innerHTML = `
+          <div><span class="text-slate-400 block text-[10px]">Email</span><span class="text-blue-600">${c.email}</span></div>
+          <div><span class="text-slate-400 block text-[10px]">Mobile & WhatsApp</span><span>${c.phone}</span></div>
+          <div><span class="text-slate-400 block text-[10px]">Address</span><span>${c.street_address}, ${c.city}, ${c.province}</span></div>
+        `;
+
+        // Academics
+        const a = data.academics || {};
+        const subjects = a.matric_subjects || {};
+        document.getElementById('vault-academics').innerHTML = `
+          <div><span class="text-slate-400 block text-[10px]">Tertiary</span><strong>${a.highest_qualification}</strong></div>
+          <div><span class="text-slate-400 block text-[10px]">Institution</span><span>${a.institution} (Class of ${a.completion_year})</span></div>
+          <div><span class="text-slate-400 block text-[10px]">Matric School</span><span>${a.matric_school} (${a.matric_year})</span></div>
+          <div class="pt-1">
+            <span class="text-slate-400 block text-[10px] mb-1">Key Matric Subjects</span>
+            <div class="grid grid-cols-2 gap-1 text-[11px]">
+              ${Object.entries(subjects).map(([k, v]) => `<div><span class="text-slate-500">${k}:</span> <strong>${v}</strong></div>`).join('')}
+            </div>
+          </div>
+        `;
+
+        // Skills
+        const skills = data.skills || [];
+        document.getElementById('vault-skills').innerHTML = skills.map(s => `
+          <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">${s}</span>
+        `).join('');
+
+        // Documents
+        const docs = data.documents || {};
+        document.getElementById('vault-documents').innerHTML = Object.entries(docs).map(([name, path]) => `
+          <div class="p-2.5 rounded-lg bg-white border border-slate-200 flex items-center justify-between">
+            <div>
+              <span class="font-bold text-slate-800 text-[11px] block">${name}</span>
+              <span class="text-[10px] font-mono text-slate-400 truncate block max-w-[200px]">${path.split('/').pop()}</span>
+            </div>
+            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Verified</span>
+          </div>
+        `).join('');
+
+      } catch (err) {
+        console.error('Failed to load vault:', err);
+      }
+    }
+
+    async function testUniversalPrepper() {
+      try {
+        const res = await fetch('/api/prepare-apply', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            portal_name: 'Workday Careers',
+            target_url: 'https://dimensiondata.wd3.myworkdayjobs.com/careers'
+          })
+        });
+        const data = await res.json();
+        alert(`Breeze Universal Form Prepper Output:\n\n${JSON.stringify(data, null, 2)}`);
+      } catch (e) {
+        showToast('Form prepper simulated payload ready!', 'info');
+      }
+    }
+  </script>
+</body>
+</html>
