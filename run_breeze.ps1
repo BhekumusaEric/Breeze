@@ -8,3 +8,4 @@ Write-Host "Opening your default browser..." -ForegroundColor Green
 Start-Process "http://127.0.0.1:8765"
 $appPath = Join-Path $PSScriptRoot "apps\web\app.py"
 python $appPath
+

@@ -8,3 +8,4 @@ echo Opening your default browser...
 start http://127.0.0.1:8765
 python "%~dp0apps\web\app.py"
 pause
+

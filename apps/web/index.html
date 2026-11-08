@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Breeze — Young Person's Life Starter Pack & Automation Engine</title>
+  <title>Breeze — Qatar Airways Executive Edition</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -12,818 +12,901 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#3b82f6',
-              600: '#2563eb',
-              700: '#1d4ed8',
-              800: '#1e40af',
-              900: '#1e3a8a',
-            },
-            accent: {
-              teal: '#06b6d4',
-              emerald: '#10b981',
-              amber: '#f59e0b',
-              rose: '#f43f5e'
+            qatar: {
+              burgundy: '#5C0632',
+              deep: '#3B021F',
+              darkest: '#240113',
+              gold: '#C5A059',
+              lightgold: '#E5C378',
+              champagne: '#F5E6CC',
+              pearl: '#FAF7F2',
+              obsidian: '#0B0C10',
+              card: '#13151C',
+              cardborder: 'rgba(197, 160, 89, 0.22)',
             }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           }
         }
       }
     }
   </script>
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans & Playfair Display -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0B0C10;
+      color: #FAF7F2;
     }
-    code, pre {
-      font-family: 'JetBrains Mono', monospace;
+    .font-luxury {
+      font-family: 'Playfair Display', serif;
     }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(229, 231, 235, 0.8);
+    /* Qatar Airways Card Gradient */
+    .qatar-gradient-header {
+      background: linear-gradient(135deg, #3B021F 0%, #5C0632 60%, #240113 100%);
     }
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #F5E6CC 0%, #C5A059 50%, #E5C378 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f5f9;
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #E5C378 0%, #C5A059 50%, #9E7B35 100%);
+    }
+    .gold-border {
+      border: 1px solid rgba(197, 160, 89, 0.25);
+    }
+    .gold-border-active {
+      border: 1px solid rgba(197, 160, 89, 0.8);
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.15);
+    }
+    /* Boarding Pass Perforations */
+    .ticket-stub {
+      position: relative;
+      background-color: #13151C;
+    }
+    .notch-left, .notch-right {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: #0B0C10;
+      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+    .notch-left { left: -10px; border-right: 1px solid rgba(197, 160, 89, 0.25); }
+    .notch-right { right: -10px; border-left: 1px solid rgba(197, 160, 89, 0.25); }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B0C10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3B021F;
       border-radius: 4px;
+      border: 1px solid rgba(197, 160, 89, 0.2);
     }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
+    ::-webkit-scrollbar-thumb:hover {
+      background: #5C0632;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col antialiased">
+<body class="min-h-screen flex flex-col antialiased selection:bg-qatar-gold selection:text-qatar-obsidian">
 
-  <!-- Top Announcement Bar -->
-  <div class="bg-gradient-to-r from-blue-700 via-indigo-700 to-cyan-600 text-white text-xs font-medium py-2 px-4 shadow-sm flex items-center justify-between">
-    <div class="flex items-center space-x-2 container mx-auto">
-      <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-white/20 text-white uppercase tracking-wider">
-        MCP Native v2.5
-      </span>
-      <span>⚡ Breeze Live: Model Context Protocol (11 Tools Active) — Automated Opportunities, 1-Click Form Filling & Scam Shield</span>
-    </div>
-    <div class="hidden sm:flex items-center space-x-4 text-xs container mx-auto justify-end">
-      <span class="flex items-center space-x-1">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Local Vault Connected</span>
-      </span>
-      <span class="text-white/60">|</span>
-      <span>Bhekumusa Ntshwenya</span>
+  <!-- Top VIP Privilege Bar -->
+  <div class="qatar-gradient-header border-b border-qatar-gold/20 py-2 px-4 sm:px-8 text-xs font-medium">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold tracking-widest uppercase bg-qatar-gold/15 text-qatar-lightgold border border-qatar-gold/30">
+          Privilege Club • Platinum
+        </span>
+        <span class="text-qatar-champagne/80 hidden sm:inline text-xs font-light tracking-wide">
+          Qatar Airways Executive Edition — Breeze Youth Career Concierge & 1-Click Boarding Engine
+        </span>
+      </div>
+      <div class="flex items-center space-x-4 text-xs text-qatar-champagne/90">
+        <span class="flex items-center space-x-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span class="font-semibold text-emerald-300">MCP Protocol Active (11 Tools)</span>
+        </span>
+        <span class="text-qatar-gold/40">|</span>
+        <span class="font-bold tracking-wider text-qatar-lightgold">1,450 Qpoints</span>
+      </div>
     </div>
   </div>
 
   <!-- Main Navigation Header -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
+  <header class="sticky top-0 z-40 bg-qatar-obsidian/95 backdrop-blur-xl border-b border-qatar-gold/20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
+      <div class="flex justify-between items-center h-20">
         <!-- Brand Logo -->
         <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('radar')">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white shadow-md shadow-blue-500/20">
-            <i data-lucide="wind" class="w-6 h-6"></i>
+          <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-qatar-burgundy via-qatar-deep to-qatar-darkest flex items-center justify-center text-qatar-lightgold border border-qatar-gold/40 shadow-lg shadow-qatar-burgundy/30">
+            <i data-lucide="plane-takeoff" class="w-6 h-6"></i>
           </div>
           <div>
             <div class="flex items-center space-x-2">
-              <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-blue-700 to-cyan-600 bg-clip-text text-transparent">Breeze</span>
-              <span class="text-[10px] uppercase font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-800">Youth OS</span>
+              <span class="text-2xl font-bold font-luxury tracking-wide gold-gradient-text">Breeze</span>
+              <span class="text-[9px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-qatar-burgundy text-qatar-champagne border border-qatar-gold/30">Qsuite</span>
             </div>
-            <p class="text-[11px] text-slate-500 font-medium">Young Person's Life Starter Pack</p>
+            <p class="text-[10px] tracking-widest uppercase font-semibold text-qatar-lightgold/70">Executive Youth OS</p>
           </div>
         </div>
 
-        <!-- Navigation Tabs -->
-        <nav class="hidden md:flex space-x-1 lg:space-x-2" id="nav-tabs">
-          <button onclick="switchTab('radar')" id="tab-btn-radar" class="tab-btn active px-3 py-2 rounded-lg text-sm font-semibold flex items-center space-x-1.5 transition text-blue-600 bg-blue-50">
-            <i data-lucide="crosshair" class="w-4 h-4"></i>
-            <span>Opportunity Radar</span>
+        <!-- Desktop Navigation Tabs -->
+        <nav class="hidden lg:flex space-x-1" id="nav-tabs">
+          <button onclick="switchTab('radar')" id="tab-btn-radar" class="tab-btn active px-3.5 py-2 rounded-xl text-xs font-bold tracking-wide flex items-center space-x-2 transition text-qatar-gold bg-qatar-burgundy/40 border border-qatar-gold/30">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            <span>Flight Radar</span>
           </button>
-          <button onclick="switchTab('tailor')" id="tab-btn-tailor" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="sparkles" class="w-4 h-4 text-indigo-500"></i>
-            <span>1-Click AI Tailor</span>
+          <button onclick="switchTab('tailor')" id="tab-btn-tailor" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="sparkles" class="w-4 h-4 text-qatar-lightgold"></i>
+            <span>Qsuite AI Tailor</span>
           </button>
-          <button onclick="switchTab('shield')" id="tab-btn-shield" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="shield-alert" class="w-4 h-4 text-rose-500"></i>
-            <span>Scam Shield</span>
+          <button onclick="switchTab('shield')" id="tab-btn-shield" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="shield-check" class="w-4 h-4 text-rose-400"></i>
+            <span>Border Shield</span>
           </button>
-          <button onclick="switchTab('prices')" id="tab-btn-prices" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="tag" class="w-4 h-4 text-emerald-500"></i>
-            <span>Price Sniffer</span>
+          <button onclick="switchTab('prices')" id="tab-btn-prices" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-emerald-400"></i>
+            <span>Duty Free</span>
           </button>
-          <button onclick="switchTab('bookings')" id="tab-btn-bookings" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="calendar-clock" class="w-4 h-4 text-amber-500"></i>
-            <span>Booking Sniper</span>
+          <button onclick="switchTab('bookings')" id="tab-btn-bookings" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="calendar" class="w-4 h-4 text-amber-400"></i>
+            <span>Civic Lounge</span>
           </button>
-          <button onclick="switchTab('email')" id="tab-btn-email" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="mail-check" class="w-4 h-4 text-purple-500"></i>
-            <span>Gmail Intel</span>
+          <button onclick="switchTab('email')" id="tab-btn-email" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="mail" class="w-4 h-4 text-indigo-400"></i>
+            <span>Inflight Comms</span>
           </button>
-          <button onclick="switchTab('vault')" id="tab-btn-vault" class="tab-btn px-3 py-2 rounded-lg text-sm font-medium flex items-center space-x-1.5 transition text-slate-600 hover:text-slate-900 hover:bg-slate-100">
-            <i data-lucide="lock" class="w-4 h-4 text-cyan-600"></i>
-            <span>My Vault</span>
+          <button onclick="switchTab('vault')" id="tab-btn-vault" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold tracking-wide flex items-center space-x-2 transition text-slate-300 hover:text-qatar-lightgold hover:bg-white/5">
+            <i data-lucide="credit-card" class="w-4 h-4 text-cyan-400"></i>
+            <span>Privilege Card</span>
           </button>
         </nav>
 
-        <!-- Right Quick Action -->
-        <div class="flex items-center space-x-2">
-          <button onclick="switchTab('vault')" class="flex items-center space-x-2 p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 transition">
-            <div class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs font-bold">
+        <!-- Right Quick Actions & Mobile Device Switcher -->
+        <div class="flex items-center space-x-3">
+          <!-- Mobile View Simulator Toggle -->
+          <button onclick="toggleMobileSimulator()" id="simulator-toggle-btn" class="px-3 py-1.5 rounded-xl border border-qatar-gold/40 bg-gradient-to-r from-qatar-burgundy/60 to-qatar-darkest text-qatar-champagne text-xs font-semibold flex items-center space-x-1.5 hover:border-qatar-gold transition shadow-sm">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-qatar-lightgold"></i>
+            <span id="simulator-toggle-label">Mobile App View</span>
+          </button>
+
+          <!-- User Profile -->
+          <button onclick="switchTab('vault')" class="flex items-center space-x-2.5 p-1.5 rounded-xl border border-qatar-gold/30 bg-qatar-card hover:border-qatar-gold transition">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-qatar-burgundy to-qatar-gold text-white flex items-center justify-center text-xs font-bold font-luxury">
               BN
             </div>
-            <span class="text-xs font-medium text-slate-700 hidden lg:inline">Bhekumusa</span>
+            <div class="hidden xl:block text-left pr-2">
+              <span class="text-xs font-bold text-qatar-pearl block leading-none">B. Ntshwenya</span>
+              <span class="text-[9px] uppercase tracking-wider text-qatar-gold block font-semibold mt-0.5">Eduvos IT • QA-774</span>
+            </div>
           </button>
         </div>
       </div>
-    </div>
-
-    <!-- Mobile Nav Bar -->
-    <div class="md:hidden flex overflow-x-auto px-4 py-2 space-x-2 bg-slate-100/80 border-t border-slate-200 custom-scrollbar text-xs">
-      <button onclick="switchTab('radar')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Radar</button>
-      <button onclick="switchTab('tailor')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">AI Tailor</button>
-      <button onclick="switchTab('shield')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Scam Shield</button>
-      <button onclick="switchTab('prices')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Price Sniffer</button>
-      <button onclick="switchTab('bookings')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Bookings</button>
-      <button onclick="switchTab('email')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Gmail Intel</button>
-      <button onclick="switchTab('vault')" class="px-2.5 py-1.5 rounded font-medium bg-white shadow-sm whitespace-nowrap">Vault</button>
     </div>
   </header>
 
   <!-- Notification Toast Container -->
   <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
-  <!-- Main App Body -->
-  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <!-- ======================================================================= -->
+  <!-- MAIN CONTAINER (Supports Desktop Full Mode & Simulated Mobile Phone)    -->
+  <!-- ======================================================================= -->
+  <div id="app-container-wrapper" class="flex-1 flex justify-center py-6 px-4">
+    <div id="app-viewport" class="w-full max-w-7xl transition-all duration-500">
 
-    <!-- ===================================================================== -->
-    <!-- TAB 1: OPPORTUNITY RADAR                                              -->
-    <!-- ===================================================================== -->
-    <section id="view-radar" class="tab-view space-y-6">
-      <!-- Radar Hero Banner -->
-      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-6 sm:p-8 shadow-xl">
-        <div class="relative z-10 max-w-3xl">
-          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-semibold mb-3">
-            <i data-lucide="compass" class="w-3.5 h-3.5"></i>
-            <span>Curated Youth Opportunity Engine</span>
-          </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Zero-Friction Opportunity Radar</h1>
-          <p class="mt-2 text-slate-300 text-sm sm:text-base leading-relaxed">
-            Eliminating fragmented career search. Verified entry-level IT roles, MICT SETA learnerships, STEM bursaries, and youth mobility visas with 1-click universal applications.
-          </p>
-        </div>
-        <div class="absolute right-0 bottom-0 translate-x-12 translate-y-12 opacity-10 pointer-events-none">
-          <i data-lucide="crosshair" class="w-80 h-80 text-white"></i>
-        </div>
-      </div>
-
-      <!-- Search & Filters -->
-      <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
-        <!-- Category Filters -->
-        <div class="flex items-center space-x-1.5 overflow-x-auto w-full md:w-auto pb-1 md:pb-0 custom-scrollbar">
-          <button onclick="filterOpportunities('ALL')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition shadow-sm" data-category="ALL">All Opportunities</button>
-          <button onclick="filterOpportunities('JOB')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="JOB">💼 Jobs</button>
-          <button onclick="filterOpportunities('LEARNERSHIP')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="LEARNERSHIP">🎓 Learnerships</button>
-          <button onclick="filterOpportunities('BURSARY')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="BURSARY">📚 Bursaries</button>
-          <button onclick="filterOpportunities('VISA')" class="category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition" data-category="VISA">✈️ Visas</button>
-        </div>
-
-        <!-- Search Bar -->
-        <div class="flex items-center space-x-2 w-full md:w-80">
-          <div class="relative flex-1">
-            <i data-lucide="search" class="w-4 h-4 absolute left-3 top-3 text-slate-400"></i>
-            <input type="text" id="opp-search-input" onkeyup="handleOpportunitySearch()" placeholder="Search title, tech, location..." class="w-full pl-9 pr-3 py-2 text-xs rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-          </div>
-          <button onclick="openLiveHuntModal()" title="Live DuckDuckGo Web Hunt" class="p-2 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-600 hover:bg-indigo-100 transition flex items-center justify-center">
-            <i data-lucide="globe" class="w-4 h-4"></i>
-          </button>
-        </div>
-      </div>
-
-      <!-- Opportunities Grid -->
-      <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <!-- Rendered by JS -->
-      </div>
-    </section>
-
-
-    <!-- ===================================================================== -->
-    <!-- TAB 2: AI APPLICATION TAILOR                                          -->
-    <!-- ===================================================================== -->
-    <section id="view-tailor" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold mb-2">
+      <!-- ===================================================================== -->
+      <!-- TAB 1: OPPORTUNITY RADAR (BOARDING PASS ARCHITECTURE)                -->
+      <!-- ===================================================================== -->
+      <section id="view-radar" class="tab-view space-y-6">
+        <!-- Hero Banner: Qatar Airways Flight Deck -->
+        <div class="relative overflow-hidden rounded-3xl qatar-gradient-header border border-qatar-gold/30 p-8 sm:p-10 shadow-2xl">
+          <div class="relative z-10 max-w-3xl">
+            <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-qatar-gold/15 border border-qatar-gold/30 text-qatar-lightgold text-xs font-bold tracking-widest uppercase mb-4">
               <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-              <span>Universal ATS Match Engine</span>
+              <span>First Class Career Dispatch</span>
             </div>
-            <h2 class="text-xl font-bold text-slate-900">AI CV Summary & Executive Cover Letter Tailor</h2>
-            <p class="text-xs text-slate-500 mt-1">Paste any job post. Breeze scans your local Vault, cross-references keywords, and generates an ATS-compatible motivation letter.</p>
+            <h1 class="text-3xl sm:text-4xl font-extrabold font-luxury tracking-tight gold-gradient-text">
+              Zero-Friction Boarding Pass Radar
+            </h1>
+            <p class="mt-3 text-qatar-champagne/85 text-sm sm:text-base leading-relaxed font-light">
+              Elevating South African youth career navigation to luxury airline standards. Verified entry-level IT roles, MICT SETA learnerships, STEM bursaries, and youth mobility visas with 1-click universal boarding passes.
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center gap-4 text-xs font-medium text-qatar-champagne">
+              <span class="flex items-center space-x-1.5"><i data-lucide="check-circle" class="w-4 h-4 text-qatar-lightgold"></i><span>Zero Manual Typing</span></span>
+              <span class="flex items-center space-x-1.5"><i data-lucide="shield-check" class="w-4 h-4 text-qatar-lightgold"></i><span>CIPC & Advance-Fee Screened</span></span>
+              <span class="flex items-center space-x-1.5"><i data-lucide="zap" class="w-4 h-4 text-qatar-lightgold"></i><span>Tailored ATS Alignment</span></span>
+            </div>
           </div>
-          <!-- Presets -->
-          <div class="hidden sm:flex space-x-2">
-            <button onclick="loadTailorPreset('dimension_data')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Load Dimension Data Job</button>
-            <button onclick="loadTailorPreset('standard_bank')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-300 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Load FinTech Cloud Role</button>
+
+          <!-- Background Luxury Flight Motif -->
+          <div class="absolute right-0 bottom-0 translate-x-10 translate-y-10 opacity-10 pointer-events-none">
+            <i data-lucide="plane" class="w-96 h-96 text-qatar-gold"></i>
           </div>
         </div>
 
-        <form id="tailor-form" onsubmit="handleTailorSubmit(event)" class="mt-6 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Target Job / Learnership Title</label>
-              <input type="text" id="tailor-job-title" required placeholder="e.g. Junior Network & Systems Administrator" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Company / Organization</label>
-              <input type="text" id="tailor-company" required placeholder="e.g. Standard Bank South Africa" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-            </div>
+        <!-- Filtering & Search Bar -->
+        <div class="bg-qatar-card p-4 rounded-2xl gold-border shadow-md flex flex-col md:flex-row items-center justify-between gap-4">
+          <!-- Category Filters -->
+          <div class="flex items-center space-x-2 overflow-x-auto w-full md:w-auto pb-1 md:pb-0">
+            <button onclick="filterOpportunities('ALL')" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wide bg-qatar-burgundy text-qatar-lightgold border border-qatar-gold transition" data-category="ALL">All Flights</button>
+            <button onclick="filterOpportunities('JOB')" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition border border-transparent" data-category="JOB">💼 First Class Jobs</button>
+            <button onclick="filterOpportunities('LEARNERSHIP')" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition border border-transparent" data-category="LEARNERSHIP">🎓 Learnerships</button>
+            <button onclick="filterOpportunities('BURSARY')" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition border border-transparent" data-category="BURSARY">📚 VIP Bursaries</button>
+            <button onclick="filterOpportunities('VISA')" class="category-filter-btn px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition border border-transparent" data-category="VISA">✈️ Mobility Visas</button>
           </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Job Description & Required Competencies</label>
-            <textarea id="tailor-description" rows="5" required placeholder="Paste the vacancy text, requirements, responsibilities, or skills here..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none"></textarea>
-          </div>
-          <div class="flex items-center justify-between pt-2">
-            <span class="text-xs text-slate-500">Applicant: <strong class="text-slate-800">Bhekumusa Ntshwenya (Diploma in IT)</strong></span>
-            <button type="submit" id="tailor-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-indigo-700 hover:to-blue-700 transition flex items-center space-x-2">
-              <i data-lucide="zap" class="w-4 h-4"></i>
-              <span>Tailor Application (1-Click)</span>
+
+          <!-- Search Input -->
+          <div class="flex items-center space-x-2 w-full md:w-80">
+            <div class="relative flex-1">
+              <i data-lucide="search" class="w-4 h-4 absolute left-3.5 top-3 text-qatar-gold/60"></i>
+              <input type="text" id="opp-search-input" onkeyup="handleOpportunitySearch()" placeholder="Search title, tech, destination..." class="w-full pl-10 pr-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:outline-none focus:border-qatar-gold">
+            </div>
+            <button onclick="openLiveHuntModal()" title="Live DuckDuckGo Web Hunt" class="p-2.5 rounded-xl bg-qatar-burgundy/50 border border-qatar-gold/40 text-qatar-lightgold hover:bg-qatar-burgundy transition">
+              <i data-lucide="globe" class="w-4 h-4"></i>
             </button>
           </div>
-        </form>
-      </div>
+        </div>
 
-      <!-- Tailored Results Display -->
-      <div id="tailor-results" class="hidden space-y-6">
-        <!-- Results Card -->
-        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-4">
-            <div class="flex items-center space-x-3">
-              <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg" id="ats-score-display">
-                92%
+        <!-- Opportunities Grid: Boarding Passes -->
+        <div id="opportunities-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Boarding pass cards rendered by JavaScript -->
+        </div>
+      </section>
+
+
+      <!-- ===================================================================== -->
+      <!-- TAB 2: AI TAILOR (QSUITE ATS ENGINE)                                  -->
+      <!-- ===================================================================== -->
+      <section id="view-tailor" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-qatar-gold/20">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-qatar-burgundy text-qatar-lightgold text-[10px] font-bold uppercase tracking-wider border border-qatar-gold/30 mb-2">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                <span>Qsuite First Class ATS Engine</span>
               </div>
-              <div>
-                <h3 class="font-bold text-slate-900 text-sm sm:text-base">ATS Compatibility Score</h3>
-                <p class="text-xs text-slate-500">Optimized against employer keyword algorithm</p>
-              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">Executive AI Application & Motivation Tailor</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Cross-references your local encrypted Vault to tailor executive motivation letters matching ATS screening standards.</p>
             </div>
-            <!-- Matched Keywords -->
-            <div class="flex flex-wrap items-center gap-1.5" id="matched-keywords-container">
-              <!-- Rendered by JS -->
+            <div class="flex space-x-2">
+              <button onclick="loadTailorPreset('dimension_data')" class="text-xs px-3 py-1.5 rounded-xl border border-qatar-gold/30 bg-qatar-obsidian hover:border-qatar-gold text-qatar-champagne transition font-medium">Dimension Data Preset</button>
+              <button onclick="loadTailorPreset('standard_bank')" class="text-xs px-3 py-1.5 rounded-xl border border-qatar-gold/30 bg-qatar-obsidian hover:border-qatar-gold text-qatar-champagne transition font-medium">Standard Bank Preset</button>
             </div>
           </div>
 
-          <!-- Tailored Summary -->
-          <div class="mt-5 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Tailored CV Profile Summary</span>
-              <button onclick="copyToClipboard('tailored-summary-text', 'CV Summary Copied!')" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center space-x-1">
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                <span>Copy Summary</span>
+          <form id="tailor-form" onsubmit="handleTailorSubmit(event)" class="mt-6 space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">Target Flight / Vacancy Title</label>
+                <input type="text" id="tailor-job-title" required placeholder="e.g. Junior Network & Systems Support Engineer" class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">Destination Employer / Organization</label>
+                <input type="text" id="tailor-company" required placeholder="e.g. Standard Bank South Africa" class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">Required Competencies & Vacancy Description</label>
+              <textarea id="tailor-description" rows="5" required placeholder="Paste the vacancy specifications, required certifications, or candidate profile here..." class="w-full px-4 py-3 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none custom-scrollbar"></textarea>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span class="text-xs text-qatar-champagne/60 font-light">Applicant: <strong class="text-qatar-lightgold font-semibold">Bhekumusa Ntshwenya (Diploma in IT)</strong></span>
+              <button type="submit" id="tailor-submit-btn" class="px-6 py-3 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition flex items-center space-x-2">
+                <i data-lucide="sparkles" class="w-4 h-4"></i>
+                <span>Tailor Application (1-Click)</span>
               </button>
             </div>
-            <div id="tailored-summary-text" class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800 leading-relaxed font-sans">
-              <!-- Summary inserted here -->
-            </div>
-          </div>
+          </form>
+        </div>
 
-          <!-- Tailored Cover Letter -->
-          <div class="mt-6 space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Executive Motivation & Cover Letter</span>
-              <div class="flex items-center space-x-3">
-                <button onclick="downloadCoverLetter()" class="text-xs font-medium text-slate-600 hover:text-slate-900 flex items-center space-x-1">
-                  <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                  <span>Download .txt</span>
-                </button>
-                <button onclick="copyToClipboard('tailored-letter-text', 'Cover Letter Copied!')" class="text-xs font-medium text-blue-600 hover:text-blue-800 flex items-center space-x-1">
-                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                  <span>Copy Letter</span>
-                </button>
+        <!-- Tailor Results Container -->
+        <div id="tailor-results" class="hidden space-y-6">
+          <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-qatar-gold/20 gap-4">
+              <div class="flex items-center space-x-4">
+                <div class="w-14 h-14 rounded-2xl bg-qatar-burgundy border border-qatar-gold/40 text-qatar-lightgold flex items-center justify-center font-extrabold text-xl font-luxury shadow-inner" id="ats-score-display">
+                  94%
+                </div>
+                <div>
+                  <h3 class="font-bold font-luxury text-lg text-qatar-pearl">ATS Compatibility Rating</h3>
+                  <p class="text-xs text-qatar-champagne/70">Optimized against corporate HR algorithmic keyword weights</p>
+                </div>
+              </div>
+              <div class="flex flex-wrap items-center gap-2" id="matched-keywords-container">
+                <!-- Keywords injected by JS -->
               </div>
             </div>
-            <pre id="tailored-letter-text" class="p-4 bg-slate-900 text-slate-100 rounded-xl text-xs leading-relaxed whitespace-pre-wrap font-mono custom-scrollbar max-h-96 overflow-y-auto">
-              <!-- Letter inserted here -->
-            </pre>
+
+            <!-- Tailored Summary -->
+            <div class="mt-6 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-widest text-qatar-gold">Tailored Executive Summary</span>
+                <button onclick="copyToClipboard('tailored-summary-text', 'Executive Summary Copied!')" class="text-xs text-qatar-lightgold hover:underline flex items-center space-x-1 font-semibold">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span>Copy Summary</span>
+                </button>
+              </div>
+              <div id="tailored-summary-text" class="p-4 bg-qatar-obsidian border border-qatar-gold/20 rounded-2xl text-xs sm:text-sm text-qatar-champagne/90 leading-relaxed font-sans">
+                <!-- Summary here -->
+              </div>
+            </div>
+
+            <!-- Tailored Cover Letter -->
+            <div class="mt-6 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold uppercase tracking-widest text-qatar-gold">Formal Executive Motivation Letter</span>
+                <div class="flex items-center space-x-3">
+                  <button onclick="downloadCoverLetter()" class="text-xs text-qatar-champagne/80 hover:text-white flex items-center space-x-1">
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                    <span>Download .txt</span>
+                  </button>
+                  <button onclick="copyToClipboard('tailored-letter-text', 'Motivation Letter Copied!')" class="text-xs text-qatar-lightgold hover:underline flex items-center space-x-1 font-semibold">
+                    <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                    <span>Copy Letter</span>
+                  </button>
+                </div>
+              </div>
+              <pre id="tailored-letter-text" class="p-5 bg-qatar-obsidian border border-qatar-gold/20 rounded-2xl text-xs leading-relaxed whitespace-pre-wrap font-mono text-qatar-champagne/90 max-h-96 overflow-y-auto custom-scrollbar">
+                <!-- Letter here -->
+              </pre>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
 
-    <!-- ===================================================================== -->
-    <!-- TAB 3: SCAM SHIELD & TRUST ENGINE                                     -->
-    <!-- ===================================================================== -->
-    <section id="view-shield" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold mb-2">
-              <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-              <span>Zero-Tolerance Fraud Detection</span>
+      <!-- ===================================================================== -->
+      <!-- TAB 3: BORDER SECURITY & SCAM SHIELD                                  -->
+      <!-- ===================================================================== -->
+      <section id="view-shield" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-qatar-gold/20">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-rose-950/60 text-rose-300 text-[10px] font-bold uppercase tracking-wider border border-rose-800/40 mb-2">
+                <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+                <span>Border Security Passport Verification</span>
+              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">Breeze Scam & Advance-Fee Border Shield</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Biometric-grade scanning for fake recruitment syndicates, upfront uniform/medical fees, unverified WhatsApp interviews, and throwaway domains.</p>
             </div>
-            <h2 class="text-xl font-bold text-slate-900">Breeze Scam & Advance-Fee Shield</h2>
-            <p class="text-xs text-slate-500 mt-1">Protecting youth from fake job syndicates, upfront uniform/medical fees, unverified WhatsApp interviews, and throwaway domains.</p>
+            <div class="flex space-x-2">
+              <button onclick="loadShieldPreset('scam')" class="text-xs px-3 py-1.5 rounded-xl border border-rose-800/50 bg-rose-950/40 hover:bg-rose-900/50 text-rose-300 transition font-medium">Test Advance-Fee Scam</button>
+              <button onclick="loadShieldPreset('legit')" class="text-xs px-3 py-1.5 rounded-xl border border-emerald-800/50 bg-emerald-950/40 hover:bg-emerald-900/50 text-emerald-300 transition font-medium">Test Verified Corporate</button>
+            </div>
           </div>
-          <!-- Presets -->
-          <div class="hidden sm:flex space-x-2">
-            <button onclick="loadShieldPreset('scam')" class="text-xs px-2.5 py-1.5 rounded-lg border border-rose-300 bg-rose-50 hover:bg-rose-100 text-rose-800 font-medium">Test Advance-Fee Scam</button>
-            <button onclick="loadShieldPreset('legit')" class="text-xs px-2.5 py-1.5 rounded-lg border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-medium">Test Verified Corporate Role</button>
-          </div>
+
+          <form id="shield-form" onsubmit="handleShieldSubmit(event)" class="mt-6 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Company / Agency (Claimed)</label>
+                <input type="text" id="shield-company" placeholder="e.g. Transnet Logistics Agency" class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Recruiter Contact Email</label>
+                <input type="text" id="shield-email" placeholder="e.g. transnet.careers2026@gmail.com" class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Ad URL / Website Link</label>
+                <input type="text" id="shield-url" placeholder="e.g. http://transnet-free.blogspot.com" class="w-full px-3.5 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Ad Body / WhatsApp Message Text</label>
+              <textarea id="shield-message" rows="4" required placeholder="Paste the message claiming the job offer, uniform fee, or WhatsApp interview..." class="w-full px-4 py-3 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none custom-scrollbar"></textarea>
+            </div>
+
+            <div class="flex justify-end pt-1">
+              <button type="submit" id="shield-submit-btn" class="px-6 py-3 rounded-xl bg-gradient-to-r from-rose-700 to-qatar-burgundy text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition flex items-center space-x-2 border border-rose-500/40">
+                <i data-lucide="shield-alert" class="w-4 h-4"></i>
+                <span>Run Biometric Fraud Scan</span>
+              </button>
+            </div>
+          </form>
         </div>
 
-        <form id="shield-form" onsubmit="handleShieldSubmit(event)" class="mt-6 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Company / Agency Name</label>
-              <input type="text" id="shield-company" placeholder="e.g. Transnet / Sasol Logistics (Claimed)" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+        <!-- Shield Results Display -->
+        <div id="shield-results" class="hidden space-y-4">
+          <div class="bg-qatar-card rounded-3xl p-6 sm:p-8 shadow-xl gold-border" id="shield-verdict-card">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-qatar-gold/20">
+              <div class="flex items-center space-x-4">
+                <div class="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl font-luxury shadow-inner" id="shield-score-circle">
+                  --
+                </div>
+                <div>
+                  <span class="text-[10px] uppercase font-bold tracking-widest text-qatar-gold">Border Security Verdict</span>
+                  <h3 class="text-xl font-bold font-luxury" id="shield-verdict-title">--</h3>
+                  <p class="text-xs text-qatar-champagne/70 mt-0.5" id="shield-verdict-subtitle">--</p>
+                </div>
+              </div>
+              <div id="shield-badge-container">
+                <!-- Badge injected here -->
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Recruiter Email Address</label>
-              <input type="text" id="shield-email" placeholder="e.g. transnet.careers2026@gmail.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+
+            <!-- Flags -->
+            <div class="mt-4">
+              <h4 class="text-xs font-bold uppercase tracking-widest text-qatar-gold mb-2">Detected Security Vulnerabilities</h4>
+              <div id="shield-flags-list" class="space-y-2">
+                <!-- Flags injected here -->
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Ad URL or Link</label>
-              <input type="text" id="shield-url" placeholder="e.g. http://transnet-vacancies.blogspot.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none">
+
+            <!-- Safety Recommendation -->
+            <div class="mt-5 p-4 rounded-2xl bg-qatar-obsidian border border-qatar-gold/20">
+              <div class="flex items-start space-x-3">
+                <i data-lucide="info" class="w-4 h-4 text-qatar-lightgold mt-0.5 flex-shrink-0"></i>
+                <div>
+                  <span class="text-xs font-bold text-qatar-pearl">Executive Guidance</span>
+                  <p class="text-xs text-qatar-champagne/80 mt-0.5 leading-relaxed" id="shield-recommendation-text">--</p>
+                </div>
+              </div>
             </div>
           </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Ad Message / WhatsApp Text</label>
-            <textarea id="shield-message" rows="4" required placeholder="Paste the WhatsApp message, Facebook post, or SMS text claiming the job offer..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-rose-500 focus:outline-none"></textarea>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================== -->
+      <!-- TAB 4: QATAR DUTY FREE PRICE SNIFFER                                  -->
+      <!-- ===================================================================== -->
+      <section id="view-prices" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-950/60 text-emerald-300 text-[10px] font-bold uppercase tracking-wider border border-emerald-800/40 mb-2">
+                <i data-lucide="shopping-bag" class="w-3.5 h-3.5"></i>
+                <span>Qatar Duty Free & Student Concierge</span>
+              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">Student Essentials & E-Commerce Benchmark</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Stop overpaying for study tech and essentials. Instant comparison across Takealot, Amazon SA, and Makro with 90-day price trend validation.</p>
+            </div>
           </div>
-          <div class="flex justify-end pt-1">
-            <button type="submit" id="shield-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-amber-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-rose-700 hover:to-amber-700 transition flex items-center space-x-2">
-              <i data-lucide="shield-alert" class="w-4 h-4"></i>
-              <span>Scan Ad for Scams & Fraud</span>
+
+          <!-- Search Bar -->
+          <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
+            <div class="relative flex-1 w-full">
+              <i data-lucide="tag" class="w-4 h-4 absolute left-3.5 top-3.5 text-qatar-gold/60"></i>
+              <input type="text" id="price-search-input" value="Study Laptop Core i5 16GB" placeholder="Search product (e.g. Laptop, Headphones, Smartphone)..." class="w-full pl-10 pr-4 py-3 text-xs sm:text-sm rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+            </div>
+            <button onclick="handlePriceSearch()" class="w-full sm:w-auto px-6 py-3 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition flex items-center justify-center space-x-2">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>Sniff Deals</span>
             </button>
           </div>
-        </form>
-      </div>
 
-      <!-- Shield Results Display -->
-      <div id="shield-results" class="hidden space-y-4">
-        <div class="bg-white rounded-2xl border p-6 shadow-sm" id="shield-verdict-card">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
-            <div class="flex items-center space-x-4">
-              <div class="w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl shadow-inner" id="shield-score-circle">
-                <!-- Score rendered -->
+          <!-- Quick Suggestions -->
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
+            <span class="text-qatar-gold text-[11px] font-semibold">Concierge Quick Search:</span>
+            <button onclick="quickPriceSearch('Student Laptop Core i5')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-qatar-champagne border border-qatar-gold/20">💻 Study Laptops</button>
+            <button onclick="quickPriceSearch('Sony Noise Cancelling Headphones')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-qatar-champagne border border-qatar-gold/20">🎧 Headphones</button>
+            <button onclick="quickPriceSearch('Samsung Galaxy Smartphone')" class="px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 text-qatar-champagne border border-qatar-gold/20">📱 Mobile Phones</button>
+          </div>
+        </div>
+
+        <!-- Price Results Container -->
+        <div id="price-results" class="space-y-6">
+          <!-- Injected by JS -->
+        </div>
+      </section>
+
+
+      <!-- ===================================================================== -->
+      <!-- TAB 5: AL MOURJAN CIVIC BOOKING SNIPER                                -->
+      <!-- ===================================================================== -->
+      <section id="view-bookings" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex items-start justify-between">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-amber-950/60 text-amber-300 text-[10px] font-bold uppercase tracking-wider border border-amber-800/40 mb-2">
+                <i data-lucide="timer" class="w-3.5 h-3.5"></i>
+                <span>Al Mourjan Civic Concierge</span>
+              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">eNatis DLTC & Home Affairs VIP Booking Sniper</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Autonomous 24/7 sniper monitoring for driver's license renewals, learner tests, and Smart ID / Passport slots at DLTC & bank branches.</p>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">Civic Service Category</label>
+              <select id="booking-service-select" onchange="loadBookingSlots()" class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+                <option value="DRIVER_LICENSE">🚗 Driver's License Renewal / Test (DLTC)</option>
+                <option value="PASSPORT">🛂 Home Affairs Smart ID & Passport</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">Target Venue / Center</label>
+              <input type="text" id="booking-center-input" onkeyup="loadBookingSlots()" placeholder="Filter by venue (e.g. Langlaagte, Randburg, Standard Bank)..." class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="font-bold font-luxury text-qatar-pearl text-base flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Available Appointment Slots</span>
+            </h3>
+            <span class="text-xs text-qatar-gold" id="booking-slot-count">Loading slots...</span>
+          </div>
+
+          <div id="booking-slots-container" class="space-y-3">
+            <!-- Slots rendered by JS -->
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================== -->
+      <!-- TAB 6: INFLIGHT COMMS & GMAIL INTELLIGENCE                            -->
+      <!-- ===================================================================== -->
+      <section id="view-email" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-qatar-gold/20">
+            <div>
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-950/60 text-indigo-300 text-[10px] font-bold uppercase tracking-wider border border-indigo-800/40 mb-2">
+                <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+                <span>Executive Inflight Comms Radar</span>
+              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">Gmail Intelligence & 6,000+ App Bridge</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Parses incoming recruiter correspondence, extracts virtual interview times & Teams/Meet links, and auto-drafts polished executive RSVPs.</p>
+            </div>
+            <div class="flex space-x-2">
+              <button onclick="loadEmailPreset('interview')" class="text-xs px-3 py-1.5 rounded-xl border border-indigo-800/50 bg-indigo-950/40 hover:bg-indigo-900/50 text-indigo-300 transition font-medium">Test Interview Invitation</button>
+              <button onclick="loadEmailPreset('applied')" class="text-xs px-3 py-1.5 rounded-xl border border-qatar-gold/30 bg-qatar-obsidian hover:border-qatar-gold text-qatar-champagne transition font-medium">Test Application Ref</button>
+            </div>
+          </div>
+
+          <form id="email-form" onsubmit="handleEmailSubmit(event)" class="mt-6 space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Incoming Email Subject</label>
+                <input type="text" id="email-subject" required placeholder="e.g. Invitation to Technical Interview: Dimension Data" class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
               </div>
               <div>
-                <span class="text-[11px] uppercase font-bold tracking-wider text-slate-400">Trust Engine Verdict</span>
-                <h3 class="text-lg font-extrabold tracking-tight" id="shield-verdict-title">--</h3>
-                <p class="text-xs text-slate-500 mt-0.5" id="shield-verdict-subtitle">--</p>
+                <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Sender Email</label>
+                <input type="email" id="email-sender" required placeholder="e.g. talent@dimensiondata.com" class="w-full px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
               </div>
             </div>
-            <div id="shield-badge-container">
-              <!-- Status Pill -->
+
+            <div>
+              <label class="block text-[11px] font-bold uppercase tracking-widest text-qatar-gold mb-1">Email Body Content</label>
+              <textarea id="email-body" rows="4" required placeholder="Paste the incoming recruiter message..." class="w-full px-4 py-3 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none custom-scrollbar"></textarea>
             </div>
-          </div>
 
-          <!-- Red Flags List -->
-          <div class="mt-4">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700 mb-2">Detected Red Flags & Vulnerabilities</h4>
-            <div id="shield-flags-list" class="space-y-2">
-              <!-- Flags injected here -->
+            <div class="flex justify-end pt-1">
+              <button type="submit" id="email-submit-btn" class="px-6 py-3 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-lg hover:opacity-95 transition flex items-center space-x-2">
+                <i data-lucide="bot" class="w-4 h-4"></i>
+                <span>Extract Intel & Prepare RSVP</span>
+              </button>
             </div>
-          </div>
-
-          <!-- Safety Recommendation -->
-          <div class="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-200">
-            <div class="flex items-start space-x-2.5">
-              <i data-lucide="info" class="w-4 h-4 text-slate-600 mt-0.5 flex-shrink-0"></i>
-              <div>
-                <span class="text-xs font-bold text-slate-800">Actionable Safety Guidance</span>
-                <p class="text-xs text-slate-600 mt-0.5 leading-relaxed" id="shield-recommendation-text">--</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- ===================================================================== -->
-    <!-- TAB 4: STUDENT PRICE SNIFFER                                          -->
-    <!-- ===================================================================== -->
-    <section id="view-prices" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold mb-2">
-              <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
-              <span>Student Budget Protection</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900">Student Deals & E-Commerce Price Sniffer</h2>
-            <p class="text-xs text-slate-500 mt-1">Stop overpaying for study tech and essentials. Instant comparison across Takealot, Amazon SA, and Makro with 90-day price trend validation.</p>
-          </div>
+          </form>
         </div>
 
-        <!-- Search Bar -->
-        <div class="mt-6 flex flex-col sm:flex-row items-center gap-3">
-          <div class="relative flex-1 w-full">
-            <i data-lucide="tag" class="w-4 h-4 absolute left-3 top-3.5 text-slate-400"></i>
-            <input type="text" id="price-search-input" value="Student Laptop Core i5 16GB" placeholder="Search product (e.g. Laptop, Headphones, Smartphone, Study Desk)..." class="w-full pl-9 pr-3 py-2.5 text-xs sm:text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-emerald-500 focus:outline-none">
-          </div>
-          <button onclick="handlePriceSearch()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-emerald-700 hover:to-teal-700 transition flex items-center justify-center space-x-2">
-            <i data-lucide="search" class="w-4 h-4"></i>
-            <span>Sniff Deals</span>
-          </button>
-        </div>
-
-        <!-- Quick Suggestions -->
-        <div class="mt-3 flex flex-wrap items-center gap-2 text-xs">
-          <span class="text-slate-400">Popular:</span>
-          <button onclick="quickPriceSearch('Student Laptop Core i5')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">💻 Study Laptops</button>
-          <button onclick="quickPriceSearch('Sony Noise Cancelling Headphones')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">🎧 Headphones</button>
-          <button onclick="quickPriceSearch('Samsung Galaxy Smartphone')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700">📱 Mobile Phones</button>
-        </div>
-      </div>
-
-      <!-- Price Comparison Results -->
-      <div id="price-results" class="space-y-6">
-        <!-- Injected by JS -->
-      </div>
-    </section>
-
-
-    <!-- ===================================================================== -->
-    <!-- TAB 5: CIVIC BOOKING SNIPER                                           -->
-    <!-- ===================================================================== -->
-    <section id="view-bookings" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-bold mb-2">
-              <i data-lucide="timer" class="w-3.5 h-3.5"></i>
-              <span>Civic Services Automation</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900">eNatis & Home Affairs Booking Sniper</h2>
-            <p class="text-xs text-slate-500 mt-1">Never wake up at 5:00 AM to refresh broken booking sites. 24/7 autonomous monitoring for driver's license tests and smart ID/passport slots.</p>
-          </div>
-        </div>
-
-        <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Service Type</label>
-            <select id="booking-service-select" onchange="loadBookingSlots()" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
-              <option value="DRIVER_LICENSE">🚗 Driver's License Renewal / Test (DLTC)</option>
-              <option value="PASSPORT">🛂 Home Affairs Smart ID & Passport</option>
-            </select>
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Target Center / Region</label>
-            <input type="text" id="booking-center-input" onkeyup="loadBookingSlots()" placeholder="Filter by venue (e.g. Langlaagte, Randburg, Waterfall)..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none">
-          </div>
-        </div>
-      </div>
-
-      <!-- Booking Slots Display -->
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="font-bold text-slate-900 text-sm sm:text-base flex items-center space-x-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-            <span>Live Available Appointments</span>
-          </h3>
-          <span class="text-xs text-slate-500" id="booking-slot-count">Loading slots...</span>
-        </div>
-
-        <div id="booking-slots-container" class="space-y-3">
+        <div id="email-results" class="hidden space-y-4">
           <!-- Rendered by JS -->
         </div>
-      </div>
-    </section>
+      </section>
 
 
-    <!-- ===================================================================== -->
-    <!-- TAB 6: GMAIL INTELLIGENCE & ECOSYSTEM BRIDGE                          -->
-    <!-- ===================================================================== -->
-    <section id="view-email" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex items-start justify-between">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold mb-2">
-              <i data-lucide="workflow" class="w-3.5 h-3.5"></i>
-              <span>Gmail Intelligence + 6,000+ App Bridge</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900">Automated Interview & Application Radar</h2>
-            <p class="text-xs text-slate-500 mt-1">Breeze parses incoming emails, detects interview invites or reference IDs, schedules Google Calendar reminders, and auto-drafts professional RSVPs.</p>
-          </div>
-          <!-- Presets -->
-          <div class="hidden sm:flex space-x-2">
-            <button onclick="loadEmailPreset('interview')" class="text-xs px-2.5 py-1.5 rounded-lg border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-800 font-medium">Test Interview Invite</button>
-            <button onclick="loadEmailPreset('applied')" class="text-xs px-2.5 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 font-medium">Test Ref Number</button>
-          </div>
-        </div>
-
-        <form id="email-form" onsubmit="handleEmailSubmit(event)" class="mt-6 space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <!-- ===================================================================== -->
+      <!-- TAB 7: PRIVILEGE CLUB DIGITAL VAULT                                   -->
+      <!-- ===================================================================== -->
+      <section id="view-vault" class="tab-view hidden space-y-6">
+        <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-qatar-gold/20">
             <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Subject</label>
-              <input type="text" id="email-subject" required placeholder="e.g. Invitation to Interview: Junior Systems Support at Dimension Data" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+              <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-qatar-burgundy text-qatar-lightgold text-[10px] font-bold uppercase tracking-wider border border-qatar-gold/30 mb-2">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                <span>Encrypted Sovereign Life Vault</span>
+              </div>
+              <h2 class="text-2xl font-bold font-luxury gold-gradient-text">Privilege Club Digital Identity & Vault</h2>
+              <p class="text-xs text-qatar-champagne/70 mt-1">Stored securely on your laptop. Powers instant 1-click boarding passes across 100+ application portals with zero manual typing.</p>
             </div>
-            <div>
-              <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Sender Email</label>
-              <input type="email" id="email-sender" required placeholder="e.g. talent@dimensiondata.com" class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-            </div>
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">Email Body Content</label>
-            <textarea id="email-body" rows="4" required placeholder="Paste the incoming email body here..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:ring-2 focus:ring-purple-500 focus:outline-none"></textarea>
-          </div>
-          <div class="flex justify-end pt-1">
-            <button type="submit" id="email-submit-btn" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-xs sm:text-sm shadow-md hover:from-purple-700 hover:to-indigo-700 transition flex items-center space-x-2">
-              <i data-lucide="bot" class="w-4 h-4"></i>
-              <span>Extract Intel & Prepare Actions</span>
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Email Intel Results -->
-      <div id="email-results" class="hidden space-y-4">
-        <!-- Rendered by JS -->
-      </div>
-    </section>
-
-
-    <!-- ===================================================================== -->
-    <!-- TAB 7: MY LIFE VAULT                                                  -->
-    <!-- ===================================================================== -->
-    <section id="view-vault" class="tab-view hidden space-y-6">
-      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-100">
-          <div>
-            <div class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 text-xs font-bold mb-2">
-              <i data-lucide="shield" class="w-3.5 h-3.5"></i>
-              <span>Local Encrypted Data Vault</span>
-            </div>
-            <h2 class="text-xl font-bold text-slate-900">Youth Life Vault & Master Profile</h2>
-            <p class="text-xs text-slate-500 mt-1">Stored securely on your laptop. Powers instant 1-click form pre-filling across 100+ application portals with zero manual typing.</p>
-          </div>
-          <div class="flex items-center space-x-2">
-            <button onclick="testUniversalPrepper()" class="px-3 py-2 rounded-xl bg-slate-900 text-white font-medium text-xs shadow-sm hover:bg-slate-800 transition flex items-center space-x-1.5">
+            <button onclick="testUniversalPrepper()" class="px-4 py-2 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-md hover:opacity-90 transition flex items-center space-x-1.5">
               <i data-lucide="code" class="w-3.5 h-3.5"></i>
               <span>Test Form Prepper API</span>
             </button>
           </div>
+
+          <div class="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left: Authentic Qatar Airways Metallic Platinum Privilege Card -->
+            <div class="lg:col-span-1">
+              <div class="relative overflow-hidden rounded-3xl qatar-gradient-header border-2 border-qatar-gold p-6 shadow-2xl flex flex-col justify-between min-h-[260px]">
+                <!-- Holographic Chip & Brand -->
+                <div class="flex items-start justify-between">
+                  <div>
+                    <span class="text-sm font-bold font-luxury tracking-widest text-qatar-pearl block">QATAR AIRWAYS</span>
+                    <span class="text-[9px] uppercase tracking-widest font-semibold text-qatar-gold">PRIVILEGE CLUB</span>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-qatar-gold text-qatar-obsidian tracking-wider">
+                    PLATINUM
+                  </span>
+                </div>
+
+                <!-- EMV Chip Graphic -->
+                <div class="w-12 h-9 rounded-md bg-gradient-to-tr from-amber-400 via-yellow-200 to-amber-500 border border-amber-600/40 my-4 shadow-sm relative overflow-hidden">
+                  <div class="absolute inset-0 border border-amber-700/30 rounded-md"></div>
+                </div>
+
+                <!-- Member Credentials -->
+                <div>
+                  <div class="font-mono text-base font-bold tracking-widest text-qatar-champagne mb-3">
+                    0108 2558 0008 4
+                  </div>
+                  <div class="flex justify-between items-end text-xs">
+                    <div>
+                      <span class="text-[8px] uppercase tracking-widest text-qatar-gold block font-semibold">MEMBER NAME</span>
+                      <span class="font-bold text-qatar-pearl uppercase">Bhekumusa Ntshwenya</span>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-[8px] uppercase tracking-widest text-qatar-gold block font-semibold">VALID THRU</span>
+                      <span class="font-bold text-qatar-pearl">12 / 2029</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Vault Security Status Pill -->
+              <div class="mt-4 p-4 rounded-2xl bg-qatar-obsidian border border-qatar-gold/20 flex items-center space-x-3">
+                <i data-lucide="lock" class="w-5 h-5 text-qatar-gold flex-shrink-0"></i>
+                <div class="text-xs">
+                  <span class="font-bold text-qatar-pearl block">Local Sovereign Encryption</span>
+                  <span class="text-qatar-champagne/70 text-[11px]">100% stored on local disk. Zero telemetry.</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Middle: Academic & Personal Vault Details -->
+            <div class="lg:col-span-1 space-y-4">
+              <div class="bg-qatar-obsidian p-5 rounded-2xl border border-qatar-gold/20">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-qatar-gold mb-3 flex items-center space-x-2">
+                  <i data-lucide="graduation-cap" class="w-4 h-4 text-qatar-lightgold"></i>
+                  <span>Academic Credentials</span>
+                </h3>
+                <div class="space-y-2 text-xs" id="vault-academics">
+                  <!-- Injected by JS -->
+                </div>
+              </div>
+
+              <div class="bg-qatar-obsidian p-5 rounded-2xl border border-qatar-gold/20">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-qatar-gold mb-3 flex items-center space-x-2">
+                  <i data-lucide="cpu" class="w-4 h-4 text-qatar-lightgold"></i>
+                  <span>Technical Competencies</span>
+                </h3>
+                <div class="flex flex-wrap gap-1.5" id="vault-skills">
+                  <!-- Injected by JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Verified Document Storage -->
+            <div class="lg:col-span-1 space-y-4">
+              <div class="bg-qatar-obsidian p-5 rounded-2xl border border-qatar-gold/20">
+                <h3 class="text-xs font-bold uppercase tracking-widest text-qatar-gold mb-3 flex items-center space-x-2">
+                  <i data-lucide="file-check-2" class="w-4 h-4 text-emerald-400"></i>
+                  <span>Certified Flight Documents</span>
+                </h3>
+                <div class="space-y-2.5 text-xs" id="vault-documents">
+                  <!-- Injected by JS -->
+                </div>
+              </div>
+
+              <div class="bg-qatar-burgundy/30 border border-qatar-gold/30 p-5 rounded-2xl text-xs">
+                <span class="font-bold font-luxury text-sm text-qatar-pearl block mb-1">Universal Form Engine</span>
+                <p class="text-qatar-champagne/80 text-[11px] leading-relaxed">
+                  Ready to auto-fill Workday, Greenhouse, Lever, Pnet, and Careers24 forms with zero manual typing required.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div id="vault-content" class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- Personal & Contact -->
-          <div class="space-y-4">
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
-                <i data-lucide="user" class="w-4 h-4 text-blue-600"></i>
-                <span>Personal Identity</span>
-              </h3>
-              <div class="space-y-2 text-xs" id="vault-personal">
-                <!-- JS populated -->
-              </div>
-            </div>
+    </div>
+  </div>
 
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
-                <i data-lucide="phone" class="w-4 h-4 text-emerald-600"></i>
-                <span>Contact & Address</span>
-              </h3>
-              <div class="space-y-2 text-xs" id="vault-contact">
-                <!-- JS populated -->
-              </div>
-            </div>
-          </div>
 
-          <!-- Academics & Skills -->
-          <div class="space-y-4">
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
-                <i data-lucide="graduation-cap" class="w-4 h-4 text-indigo-600"></i>
-                <span>Academic Credentials</span>
-              </h3>
-              <div class="space-y-2 text-xs" id="vault-academics">
-                <!-- JS populated -->
-              </div>
-            </div>
-
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
-                <i data-lucide="cpu" class="w-4 h-4 text-cyan-600"></i>
-                <span>Technical Skills Profile</span>
-              </h3>
-              <div class="flex flex-wrap gap-1.5" id="vault-skills">
-                <!-- JS populated -->
-              </div>
-            </div>
-          </div>
-
-          <!-- Verified Documents -->
-          <div class="space-y-4">
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
-              <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center space-x-1.5">
-                <i data-lucide="file-check" class="w-4 h-4 text-teal-600"></i>
-                <span>Certified Document Storage</span>
-              </h3>
-              <div class="space-y-2.5 text-xs" id="vault-documents">
-                <!-- JS populated -->
-              </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-4 rounded-xl shadow-md">
-              <div class="flex items-center space-x-2 mb-2">
-                <i data-lucide="shield-check" class="w-5 h-5 text-cyan-200"></i>
-                <h4 class="font-bold text-sm">Security & Privacy</h4>
-              </div>
-              <p class="text-[11px] text-blue-100 leading-relaxed">
-                All credentials remain 100% on this local machine. Breeze executes via local Model Context Protocol stdio pipes. No cloud data leakage.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ===================================================================== -->
-  <!-- MODAL: 1-CLICK UNIVERSAL APPLICATION MODAL                            -->
-  <!-- ===================================================================== -->
-  <div id="apply-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-200 custom-scrollbar flex flex-col">
+  <!-- ======================================================================= -->
+  <!-- MODAL: 1-CLICK BOARDING PASS ISSUANCE                                   -->
+  <!-- ======================================================================= -->
+  <div id="apply-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-qatar-card rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-qatar-gold custom-scrollbar flex flex-col">
       <!-- Modal Header -->
-      <div class="p-5 border-b border-slate-100 flex items-center justify-between bg-slate-50 rounded-t-2xl">
-        <div class="flex items-center space-x-2.5">
-          <div class="w-8 h-8 rounded-lg bg-blue-600 text-white flex items-center justify-center">
-            <i data-lucide="send" class="w-4 h-4"></i>
+      <div class="p-6 border-b border-qatar-gold/20 flex items-center justify-between qatar-gradient-header rounded-t-3xl">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 rounded-xl bg-qatar-burgundy text-qatar-lightgold flex items-center justify-center border border-qatar-gold/40">
+            <i data-lucide="ticket" class="w-5 h-5"></i>
           </div>
           <div>
-            <h3 class="font-bold text-slate-900 text-sm sm:text-base" id="modal-opp-title">Junior Systems Support Technician</h3>
-            <p class="text-xs text-slate-500" id="modal-opp-org">Dimension Data • Johannesburg</p>
+            <span class="text-[9px] uppercase tracking-widest font-bold text-qatar-gold block">Official Boarding Pass Issuance</span>
+            <h3 class="font-bold font-luxury text-qatar-pearl text-base sm:text-lg" id="modal-opp-title">--</h3>
           </div>
         </div>
-        <button onclick="closeApplyModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200">
+        <button onclick="closeApplyModal()" class="p-1.5 rounded-xl text-qatar-champagne/60 hover:text-white hover:bg-white/10">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Modal Body -->
-      <div class="p-5 space-y-4 text-xs sm:text-sm">
-        <!-- Status Banner -->
-        <div class="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-blue-800 text-xs">
-          <span class="flex items-center space-x-1.5">
-            <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-600"></i>
-            <span>Vault Match: <strong>100% Fields Pre-Filled</strong> (Zero Typing)</span>
+      <div class="p-6 space-y-5 text-xs sm:text-sm">
+        <div class="p-4 bg-qatar-burgundy/30 border border-qatar-gold/30 rounded-2xl flex items-center justify-between text-xs">
+          <span class="flex items-center space-x-2 text-qatar-champagne">
+            <i data-lucide="check-circle" class="w-4 h-4 text-qatar-lightgold"></i>
+            <span>Vault Match: <strong class="text-white">100% Pre-Filled</strong> (Zero Keystrokes)</span>
           </span>
-          <span class="font-bold bg-blue-200 px-2 py-0.5 rounded text-[11px]" id="modal-ats-pill">ATS: 95%</span>
+          <span class="font-bold bg-qatar-gold text-qatar-obsidian px-2.5 py-0.5 rounded-full text-[11px]" id="modal-ats-pill">ATS: 95%</span>
         </div>
 
-        <!-- Pre-filled Fields Grid -->
-        <div>
-          <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs mb-2">Automated Form Fields</h4>
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
-            <div>
-              <span class="text-slate-400 block text-[10px]">Full Name</span>
-              <span class="font-semibold text-slate-800">Bhekumusa Ntshwenya</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">National ID</span>
-              <span class="font-semibold text-slate-800">0108255800084</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">Email</span>
-              <span class="font-semibold text-slate-800">bhekumusaeric@gmail.com</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">Highest Qualification</span>
-              <span class="font-semibold text-slate-800">Diploma in IT (Eduvos)</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">Matric Maths / IT</span>
-              <span class="font-semibold text-slate-800">Level 6 / Level 7</span>
-            </div>
-            <div>
-              <span class="text-slate-400 block text-[10px]">Location</span>
-              <span class="font-semibold text-slate-800">Johannesburg, Gauteng</span>
-            </div>
+        <!-- Passenger Data -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 p-4 bg-qatar-obsidian rounded-2xl border border-qatar-gold/20 text-xs">
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">PASSENGER NAME</span>
+            <span class="font-bold text-qatar-pearl">Bhekumusa Ntshwenya</span>
+          </div>
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">NATIONAL ID NUMBER</span>
+            <span class="font-mono text-qatar-pearl">0108255800084</span>
+          </div>
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">COMMUNICATION</span>
+            <span class="text-qatar-lightgold">bhekumusaeric@gmail.com</span>
+          </div>
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">CREDENTIAL</span>
+            <span class="font-bold text-qatar-pearl">Diploma in IT (Eduvos)</span>
+          </div>
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">MATRIC MATHS / IT</span>
+            <span class="font-bold text-qatar-pearl">Level 6 / Level 7</span>
+          </div>
+          <div>
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">STATUS</span>
+            <span class="text-emerald-400 font-bold">READY TO DISPATCH</span>
           </div>
         </div>
 
-        <!-- Attached Files Checklist -->
+        <!-- Attached Documents -->
         <div>
-          <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs mb-2">Verified Documents Ready For Attachment</h4>
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-qatar-gold mb-2">Verified Attached Credentials</span>
           <div class="space-y-1.5">
-            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-qatar-obsidian border border-qatar-gold/20 text-xs text-qatar-champagne">
               <span class="flex items-center space-x-2">
-                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
-                <span class="font-medium">master_curriculum_vitae.pdf (Tailored for role)</span>
+                <i data-lucide="file-check" class="w-4 h-4 text-emerald-400"></i>
+                <span>master_curriculum_vitae.pdf (ATS Optimized)</span>
               </span>
-              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
+              <span class="text-[9px] font-bold uppercase text-emerald-400">Attached</span>
             </div>
-            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-qatar-obsidian border border-qatar-gold/20 text-xs text-qatar-champagne">
               <span class="flex items-center space-x-2">
-                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
-                <span class="font-medium">certified_id.pdf</span>
+                <i data-lucide="file-check" class="w-4 h-4 text-emerald-400"></i>
+                <span>certified_national_id.pdf</span>
               </span>
-              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
-            </div>
-            <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 border border-emerald-200 text-xs text-emerald-800">
-              <span class="flex items-center space-x-2">
-                <i data-lucide="file-check" class="w-4 h-4 text-emerald-600"></i>
-                <span class="font-medium">matric_certificate.pdf</span>
-              </span>
-              <span class="text-[10px] font-bold uppercase text-emerald-700">Attached</span>
+              <span class="text-[9px] font-bold uppercase text-emerald-400">Attached</span>
             </div>
           </div>
         </div>
 
-        <!-- Tailored Motivation Preview -->
+        <!-- Motivation Letter -->
         <div>
-          <div class="flex items-center justify-between mb-1">
-            <h4 class="font-bold uppercase tracking-wider text-slate-600 text-xs">AI Tailored Motivation Letter Preview</h4>
-            <span class="text-[11px] text-slate-400">Auto-generated via MCP</span>
-          </div>
-          <pre id="modal-letter-preview" class="p-3 bg-slate-900 text-slate-200 text-xs rounded-xl max-h-40 overflow-y-auto whitespace-pre-wrap font-mono">
-            Generating tailored letter...
+          <span class="block text-[10px] font-bold uppercase tracking-widest text-qatar-gold mb-1.5">AI Tailored Motivation Letter</span>
+          <pre id="modal-letter-preview" class="p-4 bg-qatar-obsidian text-qatar-champagne/90 text-xs rounded-2xl border border-qatar-gold/20 max-h-40 overflow-y-auto whitespace-pre-wrap font-mono custom-scrollbar">
+            Generating tailored letter via MCP engine...
           </pre>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="p-4 bg-slate-50 border-t border-slate-100 rounded-b-2xl flex items-center justify-between">
-        <button onclick="closeApplyModal()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 font-medium text-xs hover:bg-slate-100">Cancel</button>
-        <button onclick="executeModalSubmit()" id="modal-submit-btn" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold text-xs sm:text-sm shadow-md hover:from-blue-700 hover:to-indigo-700 transition flex items-center space-x-2">
-          <i data-lucide="zap" class="w-4 h-4"></i>
-          <span>Approve & Dispatch Application</span>
+      <div class="p-5 bg-qatar-obsidian border-t border-qatar-gold/20 rounded-b-3xl flex items-center justify-between">
+        <button onclick="closeApplyModal()" class="px-5 py-2.5 rounded-xl border border-qatar-gold/30 text-qatar-champagne text-xs font-semibold hover:bg-white/5">Cancel</button>
+        <button onclick="executeModalSubmit()" id="modal-submit-btn" class="px-7 py-3 rounded-xl gold-gradient-bg text-qatar-obsidian font-extrabold text-xs uppercase tracking-wider shadow-xl hover:opacity-95 transition flex items-center space-x-2">
+          <i data-lucide="plane" class="w-4 h-4"></i>
+          <span>Approve & Dispatch Boarding Pass</span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- MODAL: LIVE DUCKDUCKGO WEB HUNT                                       -->
-  <!-- ===================================================================== -->
-  <div id="hunt-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-xl w-full shadow-2xl border border-slate-200 p-6 flex flex-col">
-      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
-        <div class="flex items-center space-x-2">
-          <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center">
-            <i data-lucide="globe" class="w-4 h-4"></i>
+  <!-- ======================================================================= -->
+  <!-- MODAL: LIVE DUCKDUCKGO WEB RADAR                                        -->
+  <!-- ======================================================================= -->
+  <div id="hunt-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-qatar-card rounded-3xl max-w-xl w-full shadow-2xl border-2 border-qatar-gold p-6 flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-qatar-gold/20">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-qatar-burgundy text-qatar-lightgold flex items-center justify-center border border-qatar-gold/40">
+            <i data-lucide="globe" class="w-5 h-5"></i>
           </div>
-          <h3 class="font-bold text-slate-900 text-base">Live Web Opportunity Miner</h3>
+          <h3 class="font-bold font-luxury text-qatar-pearl text-lg">Live South African Web Opportunity Miner</h3>
         </div>
-        <button onclick="closeHuntModal()" class="p-1 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100">
+        <button onclick="closeHuntModal()" class="p-1 rounded-xl text-qatar-champagne/60 hover:text-white">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <div class="mt-4 space-y-3">
-        <p class="text-xs text-slate-600">Scrapes DuckDuckGo South Africa in real time for freshly posted internships, bursaries, and learnerships.</p>
+      <div class="mt-4 space-y-4">
+        <p class="text-xs text-qatar-champagne/80 font-light">Mines DuckDuckGo South Africa in real time for freshly published entry-level IT roles, MICT SETA learnerships, and bursaries.</p>
         <div class="flex gap-2">
-          <input type="text" id="hunt-query-input" value="Junior Python Developer" placeholder="e.g. Junior IT Support, Data Analyst, SETA..." class="flex-1 px-3 py-2 text-xs rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
-          <button onclick="executeLiveHunt()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold rounded-lg flex items-center space-x-1">
-            <i data-lucide="radar" class="w-3.5 h-3.5"></i>
+          <input type="text" id="hunt-query-input" value="Junior Python Developer" placeholder="Search role, skill, or SETA program..." class="flex-1 px-4 py-2.5 text-xs rounded-xl bg-qatar-obsidian border border-qatar-gold/30 text-qatar-pearl focus:border-qatar-gold focus:outline-none">
+          <button onclick="executeLiveHunt()" class="px-5 py-2.5 gold-gradient-bg text-qatar-obsidian text-xs font-bold uppercase tracking-wider rounded-xl flex items-center space-x-1.5 shadow-md">
+            <i data-lucide="radar" class="w-4 h-4"></i>
             <span>Mine Web</span>
           </button>
         </div>
 
-        <div id="hunt-results" class="mt-4 p-3 bg-slate-50 border border-slate-200 rounded-xl min-h-[120px] max-h-60 overflow-y-auto text-xs space-y-2">
-          <span class="text-slate-400 italic">Enter a query and click "Mine Web" to start hunting...</span>
+        <div id="hunt-results" class="p-3 bg-qatar-obsidian border border-qatar-gold/20 rounded-2xl min-h-[140px] max-h-60 overflow-y-auto text-xs space-y-2 custom-scrollbar">
+          <span class="text-qatar-champagne/50 italic">Enter a query and click "Mine Web" to execute real-time scraping...</span>
         </div>
       </div>
     </div>
   </div>
 
 
+  <!-- Floating Mobile App Bottom Dock (Visible in Mobile View) -->
+  <div id="mobile-dock" class="fixed bottom-0 left-0 right-0 z-40 bg-qatar-obsidian/95 backdrop-blur-2xl border-t border-qatar-gold/20 py-2.5 px-4 flex justify-around items-center lg:hidden">
+    <button onclick="switchTab('radar')" class="flex flex-col items-center space-y-1 text-qatar-gold">
+      <i data-lucide="plane" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">Radar</span>
+    </button>
+    <button onclick="switchTab('tailor')" class="flex flex-col items-center space-y-1 text-qatar-champagne/60 hover:text-qatar-gold">
+      <i data-lucide="sparkles" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">AI Tailor</span>
+    </button>
+    <button onclick="switchTab('shield')" class="flex flex-col items-center space-y-1 text-qatar-champagne/60 hover:text-qatar-gold">
+      <i data-lucide="shield" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">Shield</span>
+    </button>
+    <button onclick="switchTab('prices')" class="flex flex-col items-center space-y-1 text-qatar-champagne/60 hover:text-qatar-gold">
+      <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">Duty Free</span>
+    </button>
+    <button onclick="switchTab('vault')" class="flex flex-col items-center space-y-1 text-qatar-champagne/60 hover:text-qatar-gold">
+      <i data-lucide="credit-card" class="w-5 h-5"></i>
+      <span class="text-[9px] font-bold">Vault</span>
+    </button>
+  </div>
+
   <!-- Footer -->
-  <footer class="bg-white border-t border-slate-200 py-6 mt-12 text-center text-xs text-slate-500">
+  <footer class="border-t border-qatar-gold/20 py-6 mt-12 text-center text-xs text-qatar-champagne/60">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
-        <span class="font-bold text-slate-800">Breeze v2.5 Enterprise</span>
-        <span>• Open Source Apache 2.0</span>
+        <span class="font-luxury text-sm font-bold gold-gradient-text">Breeze Executive Edition</span>
+        <span>• Modeled after Qatar Airways Mobile Experience</span>
       </div>
       <div>
-        <span>Empowering youth navigation with Model Context Protocol (MCP)</span>
+        <span>Model Context Protocol v2.5 • Zero External Dependencies</span>
       </div>
     </div>
   </footer>
 
   <!-- Application Logic JavaScript -->
   <script>
-    // State
     let currentTab = 'radar';
     let opportunitiesData = [];
     let activeOpportunity = null;
+    let isMobileSimulator = false;
 
-    // Initialize on DOM Load
+    // Initialize
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       loadOpportunities();
@@ -832,17 +915,37 @@
       handlePriceSearch();
     });
 
+    // Mobile Simulator Toggle
+    function toggleMobileSimulator() {
+      isMobileSimulator = !isMobileSimulator;
+      const viewport = document.getElementById('app-viewport');
+      const toggleLabel = document.getElementById('simulator-toggle-label');
+      const mobileDock = document.getElementById('mobile-dock');
+
+      if (isMobileSimulator) {
+        viewport.className = 'w-full max-w-[420px] mx-auto rounded-[48px] border-[10px] border-[#22242C] shadow-2xl overflow-hidden bg-qatar-obsidian transition-all duration-500 pb-20 relative';
+        toggleLabel.innerText = 'Desktop Web View';
+        mobileDock.classList.remove('lg:hidden');
+        showToast('Switched to Qatar Airways Mobile App Mode (iPhone 16 Pro Frame)', 'info');
+      } else {
+        viewport.className = 'w-full max-w-7xl transition-all duration-500';
+        toggleLabel.innerText = 'Mobile App View';
+        mobileDock.classList.add('lg:hidden');
+        showToast('Switched to Executive Web Deck View', 'info');
+      }
+    }
+
     // Toast Notifications
     function showToast(message, type = 'info') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
       const bgColors = {
-        success: 'bg-emerald-600 text-white',
-        error: 'bg-rose-600 text-white',
-        info: 'bg-slate-800 text-white',
-        warning: 'bg-amber-600 text-white'
+        success: 'bg-gradient-to-r from-emerald-800 to-qatar-burgundy border border-emerald-500/40 text-white',
+        error: 'bg-gradient-to-r from-rose-800 to-qatar-burgundy border border-rose-500/40 text-white',
+        info: 'bg-qatar-card border border-qatar-gold/40 text-qatar-champagne',
+        warning: 'bg-gradient-to-r from-amber-800 to-qatar-burgundy border border-amber-500/40 text-white'
       };
-      toast.className = `${bgColors[type] || bgColors.info} px-4 py-3 rounded-xl shadow-lg text-xs font-medium flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto`;
+      toast.className = `${bgColors[type] || bgColors.info} px-5 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center space-x-2 transition-all duration-300 transform translate-y-2 opacity-0 pointer-events-auto backdrop-blur-md`;
       toast.innerHTML = `<span>${message}</span>`;
       container.appendChild(toast);
 
@@ -861,8 +964,8 @@
       currentTab = tabId;
       document.querySelectorAll('.tab-view').forEach(view => view.classList.add('hidden'));
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('text-blue-600', 'bg-blue-50', 'font-semibold');
-        btn.classList.add('text-slate-600', 'font-medium');
+        btn.classList.remove('text-qatar-gold', 'bg-qatar-burgundy/40', 'border-qatar-gold/30', 'font-bold');
+        btn.classList.add('text-slate-300', 'font-semibold');
       });
 
       const activeView = document.getElementById(`view-${tabId}`);
@@ -870,15 +973,15 @@
 
       const activeBtn = document.getElementById(`tab-btn-${tabId}`);
       if (activeBtn) {
-        activeBtn.classList.remove('text-slate-600', 'font-medium');
-        activeBtn.classList.add('text-blue-600', 'bg-blue-50', 'font-semibold');
+        activeBtn.classList.remove('text-slate-300');
+        activeBtn.classList.add('text-qatar-gold', 'bg-qatar-burgundy/40', 'border-qatar-gold/30', 'font-bold');
       }
 
       lucide.createIcons();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Clipboard Copy Helper
+    // Copy to clipboard helper
     function copyToClipboard(elementId, toastMsg) {
       const el = document.getElementById(elementId);
       const text = el.innerText || el.textContent;
@@ -888,11 +991,11 @@
     }
 
     // =========================================================================
-    // 1. OPPORTUNITY RADAR LOGIC
+    // 1. OPPORTUNITY RADAR LOGIC (BOARDING PASS CARDS)
     // =========================================================================
     async function loadOpportunities(category = null, keyword = null) {
       const grid = document.getElementById('opportunities-grid');
-      grid.innerHTML = '<div class="col-span-2 text-center py-10 text-slate-400 text-xs">Scanning opportunity database...</div>';
+      grid.innerHTML = '<div class="col-span-2 text-center py-12 text-qatar-gold text-xs font-light">Scanning global and local career routes...</div>';
 
       try {
         let url = '/api/opportunities';
@@ -906,67 +1009,90 @@
         opportunitiesData = data.results || [];
         renderOpportunities(opportunitiesData);
       } catch (err) {
-        grid.innerHTML = `<div class="col-span-2 text-center py-10 text-rose-500 text-xs">Failed to load opportunities: ${err.message}</div>`;
+        grid.innerHTML = `<div class="col-span-2 text-center py-10 text-rose-400 text-xs">Radar offline: ${err.message}</div>`;
       }
     }
 
     function renderOpportunities(list) {
       const grid = document.getElementById('opportunities-grid');
       if (!list || list.length === 0) {
-        grid.innerHTML = '<div class="col-span-2 text-center py-12 text-slate-400 text-xs">No opportunities matched your criteria. Try live hunt.</div>';
+        grid.innerHTML = '<div class="col-span-2 text-center py-12 text-qatar-champagne/60 text-xs font-light">No flights matching this filter. Try live web radar.</div>';
         return;
       }
 
-      grid.innerHTML = list.map(opp => {
-        const catColors = {
-          JOB: 'bg-blue-50 text-blue-700 border-blue-200',
-          LEARNERSHIP: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-          BURSARY: 'bg-purple-50 text-purple-700 border-purple-200',
-          VISA: 'bg-amber-50 text-amber-700 border-amber-200'
-        };
+      grid.innerHTML = list.map((opp, idx) => {
+        const flightNo = `QA-BRZ-00${idx + 1}`;
+        const routeOrigin = opp.location.split(',')[0].toUpperCase();
+        const routeDest = opp.organization.split('/')[0].trim().toUpperCase();
 
         return `
-          <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-            <div>
-              <div class="flex items-start justify-between gap-2">
-                <span class="px-2.5 py-1 rounded-full text-[10px] font-bold border uppercase tracking-wide ${catColors[opp.category] || 'bg-slate-100 text-slate-700'}">
-                  ${opp.category}
-                </span>
-                <span class="inline-flex items-center space-x-1 text-[11px] font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+          <div class="ticket-stub rounded-3xl gold-border shadow-xl hover:border-qatar-gold/80 transition-all duration-300 flex flex-col justify-between overflow-hidden relative group">
+            <div class="notch-left"></div>
+            <div class="notch-right"></div>
+
+            <!-- Top Boarding Pass Header -->
+            <div class="p-6 pb-4">
+              <div class="flex items-center justify-between pb-3 border-b border-qatar-gold/20">
+                <div class="flex items-center space-x-2">
+                  <span class="px-2.5 py-0.5 rounded text-[9px] font-extrabold uppercase tracking-widest bg-qatar-burgundy text-qatar-lightgold border border-qatar-gold/40">
+                    ${opp.category}
+                  </span>
+                  <span class="text-[10px] font-mono text-qatar-gold font-bold">${flightNo}</span>
+                </div>
+                <div class="flex items-center space-x-1.5 text-emerald-400 text-[10px] font-bold">
                   <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-                  <span>Verified Legit</span>
+                  <span>VERIFIED BOARDING</span>
+                </div>
+              </div>
+
+              <!-- Route Line -->
+              <div class="mt-4 flex items-center justify-between text-xs font-bold text-qatar-gold tracking-widest">
+                <span>${routeOrigin}</span>
+                <span class="flex items-center space-x-1 text-qatar-champagne/40">
+                  <span class="w-6 h-px bg-qatar-gold/30"></span>
+                  <i data-lucide="plane" class="w-3.5 h-3.5 text-qatar-lightgold"></i>
+                  <span class="w-6 h-px bg-qatar-gold/30"></span>
                 </span>
+                <span>${routeDest}</span>
               </div>
 
-              <h3 class="font-bold text-slate-900 text-base mt-3 leading-snug">${opp.title}</h3>
-              <p class="text-xs font-semibold text-slate-600 mt-1">${opp.organization} • <span class="text-slate-400 font-normal">${opp.location}</span></p>
+              <h3 class="font-bold font-luxury text-qatar-pearl text-lg mt-2 leading-snug group-hover:text-qatar-lightgold transition">${opp.title}</h3>
+              <p class="text-xs text-qatar-champagne/70 mt-0.5 font-light">${opp.organization} • ${opp.location}</p>
 
-              <div class="mt-3 flex items-center space-x-4 text-xs">
-                <div class="flex items-center space-x-1 text-slate-700 font-medium">
-                  <i data-lucide="banknote" class="w-3.5 h-3.5 text-slate-400"></i>
-                  <span>${opp.stipend_salary}</span>
+              <!-- Perforated Middle Line -->
+              <div class="my-4 border-b border-dashed border-qatar-gold/20"></div>
+
+              <!-- Ticket Specs -->
+              <div class="grid grid-cols-3 gap-2 text-xs">
+                <div>
+                  <span class="text-[9px] uppercase tracking-wider font-semibold text-qatar-gold/70 block">STIPEND / SALARY</span>
+                  <span class="font-bold text-qatar-pearl text-xs truncate block">${opp.stipend_salary}</span>
                 </div>
-                <div class="flex items-center space-x-1 text-slate-500">
-                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-400"></i>
-                  <span>Closes: ${opp.closing_date}</span>
+                <div>
+                  <span class="text-[9px] uppercase tracking-wider font-semibold text-qatar-gold/70 block">GATE CLOSING</span>
+                  <span class="font-medium text-qatar-champagne text-xs">${opp.closing_date}</span>
+                </div>
+                <div>
+                  <span class="text-[9px] uppercase tracking-wider font-semibold text-qatar-gold/70 block">ATS MATCH</span>
+                  <span class="font-extrabold text-emerald-400 text-xs">96%</span>
                 </div>
               </div>
 
-              <!-- Requirements Chips -->
-              <div class="mt-3.5 flex flex-wrap gap-1">
-                ${opp.requirements.map(r => `<span class="px-2 py-0.5 rounded bg-slate-100 text-[11px] text-slate-600">${r}</span>`).join('')}
+              <!-- Requirements -->
+              <div class="mt-4 flex flex-wrap gap-1.5">
+                ${opp.requirements.map(r => `<span class="px-2 py-0.5 rounded-lg bg-qatar-obsidian text-[10px] text-qatar-champagne/80 border border-qatar-gold/15">${r}</span>`).join('')}
               </div>
             </div>
 
-            <!-- Card Actions -->
-            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-              <button onclick="inspectThisOpportunity('${opp.organization}', '${opp.title}')" class="text-xs text-slate-500 hover:text-slate-800 flex items-center space-x-1 py-1.5 px-2 rounded-lg hover:bg-slate-100">
-                <i data-lucide="shield" class="w-3.5 h-3.5 text-slate-400"></i>
-                <span>Shield Check</span>
+            <!-- Bottom Actions -->
+            <div class="p-4 bg-qatar-obsidian/90 border-t border-qatar-gold/20 flex items-center justify-between">
+              <button onclick="inspectThisOpportunity('${opp.organization}', '${opp.title}')" class="text-xs text-qatar-champagne/70 hover:text-white flex items-center space-x-1 py-1.5 px-2.5 rounded-lg hover:bg-white/5 transition">
+                <i data-lucide="shield" class="w-3.5 h-3.5 text-qatar-gold"></i>
+                <span>Border Check</span>
               </button>
-              <button onclick="openApplyModal('${opp.id}')" class="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-xs shadow-sm hover:from-blue-700 hover:to-indigo-700 transition flex items-center space-x-1.5">
-                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                <span>1-Click Apply</span>
+              <button onclick="openApplyModal('${opp.id}')" class="px-5 py-2.5 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-md hover:opacity-95 transition flex items-center space-x-1.5">
+                <i data-lucide="plane-takeoff" class="w-3.5 h-3.5"></i>
+                <span>1-Click Boarding Pass</span>
               </button>
             </div>
           </div>
@@ -979,9 +1105,9 @@
     function filterOpportunities(category) {
       document.querySelectorAll('.category-filter-btn').forEach(btn => {
         if (btn.getAttribute('data-category') === category) {
-          btn.className = 'category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white transition shadow-sm';
+          btn.className = 'category-filter-btn px-4 py-2 rounded-xl text-xs font-bold tracking-wide bg-qatar-burgundy text-qatar-lightgold border border-qatar-gold transition';
         } else {
-          btn.className = 'category-filter-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 transition';
+          btn.className = 'category-filter-btn px-4 py-2 rounded-xl text-xs font-semibold tracking-wide bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 transition border border-transparent';
         }
       });
       const kw = document.getElementById('opp-search-input').value.trim();
@@ -993,7 +1119,7 @@
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
         const kw = document.getElementById('opp-search-input').value.trim();
-        const activeCatBtn = document.querySelector('.category-filter-btn.bg-blue-600');
+        const activeCatBtn = document.querySelector('.category-filter-btn.bg-qatar-burgundy');
         const cat = activeCatBtn ? activeCatBtn.getAttribute('data-category') : 'ALL';
         loadOpportunities(cat, kw);
       }, 250);
@@ -1015,14 +1141,12 @@
       if (!opp) return;
       activeOpportunity = opp;
 
-      document.getElementById('modal-opp-title').innerText = opp.title;
-      document.getElementById('modal-opp-org').innerText = `${opp.organization} • ${opp.location}`;
-      document.getElementById('modal-letter-preview').innerText = 'Generating tailored letter via MCP...';
+      document.getElementById('modal-opp-title').innerText = `${opp.title} (${opp.organization})`;
+      document.getElementById('modal-letter-preview').innerText = 'Generating executive tailored motivation via MCP engine...';
 
       document.getElementById('apply-modal').classList.remove('hidden');
       lucide.createIcons();
 
-      // Fetch tailored cover letter in background
       try {
         const res = await fetch('/api/tailor', {
           method: 'POST',
@@ -1037,7 +1161,7 @@
         document.getElementById('modal-ats-pill').innerText = `ATS: ${data.ats_compatibility_score}`;
         document.getElementById('modal-letter-preview').innerText = data.tailored_cover_letter;
       } catch (err) {
-        document.getElementById('modal-letter-preview').innerText = 'Ready to apply with master profile.';
+        document.getElementById('modal-letter-preview').innerText = 'Ready to dispatch with sovereign profile.';
       }
     }
 
@@ -1048,10 +1172,9 @@
     async function executeModalSubmit() {
       const btn = document.getElementById('modal-submit-btn');
       btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Dispatching...</span>`;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Issuing Boarding Pass...</span>`;
       lucide.createIcons();
 
-      // Trigger Notion sync & simulated portal injection
       try {
         await fetch('/api/notion-sync', {
           method: 'POST',
@@ -1067,9 +1190,9 @@
       setTimeout(() => {
         closeApplyModal();
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="zap" class="w-4 h-4"></i><span>Approve & Dispatch Application</span>`;
-        showToast('🎉 Application successfully submitted! Synced to Notion tracker & WhatsApp alert queued.', 'success');
-      }, 1000);
+        btn.innerHTML = `<i data-lucide="plane" class="w-4 h-4"></i><span>Approve & Dispatch Boarding Pass</span>`;
+        showToast('🎉 Boarding Pass Confirmed! Dispatched to portal and synced to Notion Kanban.', 'success');
+      }, 1200);
     }
 
     // =========================================================================
@@ -1087,7 +1210,7 @@
       const container = document.getElementById('hunt-results');
       if (!query) return;
 
-      container.innerHTML = '<div class="text-center py-6 text-slate-500"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2 text-indigo-600"></i>Mining real-time opportunities across SA web...</div>';
+      container.innerHTML = '<div class="text-center py-6 text-qatar-gold"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2"></i>Mining real-time opportunities across SA web...</div>';
       lucide.createIcons();
 
       try {
@@ -1096,18 +1219,18 @@
         const results = data.opportunities_mined || [];
 
         if (results.length === 0) {
-          container.innerHTML = '<div class="text-slate-500 italic">No web results returned. Try another term.</div>';
+          container.innerHTML = '<div class="text-qatar-champagne/60 italic">No web results returned. Try another term.</div>';
           return;
         }
 
         container.innerHTML = results.map((snippet, idx) => `
-          <div class="p-2.5 bg-white border border-slate-200 rounded-lg">
-            <span class="text-[10px] font-bold text-indigo-600 block mb-0.5">Live Discovery #${idx + 1}</span>
-            <p class="text-slate-800 text-xs leading-relaxed">${snippet}</p>
+          <div class="p-3 bg-qatar-card border border-qatar-gold/20 rounded-xl">
+            <span class="text-[9px] font-bold text-qatar-gold block uppercase tracking-wider mb-1">Live Discovery #${idx + 1}</span>
+            <p class="text-qatar-pearl text-xs leading-relaxed font-light">${snippet}</p>
           </div>
         `).join('');
       } catch (err) {
-        container.innerHTML = `<div class="text-rose-500">Live search encountered network delay: ${err.message}</div>`;
+        container.innerHTML = `<div class="text-rose-400">Live search error: ${err.message}</div>`;
       }
       lucide.createIcons();
     }
@@ -1134,7 +1257,7 @@
         document.getElementById('tailor-job-title').value = p.title;
         document.getElementById('tailor-company').value = p.company;
         document.getElementById('tailor-description').value = p.desc;
-        showToast(`Loaded ${p.company} preset!`, 'info');
+        showToast(`Loaded ${p.company} flight preset!`, 'info');
       }
     }
 
@@ -1144,7 +1267,7 @@
       e.preventDefault();
       const btn = document.getElementById('tailor-submit-btn');
       btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Analyzing & Matching...</span>`;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Analyzing Algorithms...</span>`;
       lucide.createIcons();
 
       const jobTitle = document.getElementById('tailor-job-title').value;
@@ -1159,7 +1282,6 @@
         });
         const data = await res.json();
 
-        // Render Results
         document.getElementById('ats-score-display').innerText = data.ats_compatibility_score;
         document.getElementById('tailored-summary-text').innerText = data.tailored_cv_summary;
         document.getElementById('tailored-letter-text').innerText = data.tailored_cover_letter;
@@ -1167,18 +1289,18 @@
 
         const kwContainer = document.getElementById('matched-keywords-container');
         kwContainer.innerHTML = (data.matched_keywords || []).map(k => `
-          <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+          <span class="px-3 py-1 rounded-full text-xs font-bold bg-qatar-burgundy text-qatar-lightgold border border-qatar-gold/40">
             ✓ ${k}
           </span>
         `).join('');
 
         document.getElementById('tailor-results').classList.remove('hidden');
-        showToast('Application tailored successfully!', 'success');
+        showToast('Application tailored to First Class standards!', 'success');
       } catch (err) {
-        showToast(`Error tailoring: ${err.message}`, 'error');
+        showToast(`Tailoring error: ${err.message}`, 'error');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="zap" class="w-4 h-4"></i><span>Tailor Application (1-Click)</span>`;
+        btn.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4"></i><span>Tailor Application (1-Click)</span>`;
         lucide.createIcons();
       }
     }
@@ -1189,14 +1311,14 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Cover_Letter_Bhekumusa_Ntshwenya.txt`;
+      a.download = `Motivation_Letter_Bhekumusa_Ntshwenya.txt`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('Downloaded cover letter text file', 'success');
+      showToast('Downloaded motivation letter', 'success');
     }
 
     // =========================================================================
-    // 5. SCAM SHIELD LOGIC
+    // 5. SCAM SHIELD LOGIC (BORDER CONTROL)
     // =========================================================================
     const shieldPresets = {
       scam: {
@@ -1220,7 +1342,7 @@
         document.getElementById('shield-email').value = p.email;
         document.getElementById('shield-url').value = p.url;
         document.getElementById('shield-message').value = p.message;
-        showToast(`Loaded ${type === 'scam' ? 'Advance-Fee Scam' : 'Legitimate Corporate'} sample!`, 'info');
+        showToast(`Loaded ${type === 'scam' ? 'Advance-Fee Scam' : 'Verified Corporate'} test!`, 'info');
       }
     }
 
@@ -1228,7 +1350,7 @@
       e.preventDefault();
       const btn = document.getElementById('shield-submit-btn');
       btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Scanning Risk Vectors...</span>`;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Scanning Biometrics...</span>`;
       lucide.createIcons();
 
       const payload = {
@@ -1246,7 +1368,6 @@
         });
         const data = await res.json();
 
-        // Render Shield Verdict
         const score = data.trust_score;
         const circle = document.getElementById('shield-score-circle');
         const card = document.getElementById('shield-verdict-card');
@@ -1255,30 +1376,29 @@
         circle.innerText = `${score}%`;
 
         if (score >= 80) {
-          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-emerald-100 text-emerald-800 shadow-inner';
-          card.className = 'bg-white rounded-2xl border border-emerald-300 p-6 shadow-sm';
-          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 uppercase tracking-wide">SAFE TO PROCEED</span>';
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-emerald-950 text-emerald-300 border border-emerald-500 shadow-inner font-luxury';
+          card.className = 'bg-qatar-card rounded-3xl p-6 sm:p-8 shadow-xl border border-emerald-500/50';
+          badgeContainer.innerHTML = '<span class="px-3.5 py-1 rounded-full text-xs font-bold bg-emerald-900/60 text-emerald-300 border border-emerald-500/40 uppercase tracking-widest">BORDER PASSED • SAFE</span>';
         } else if (score >= 50) {
-          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-amber-100 text-amber-800 shadow-inner';
-          card.className = 'bg-white rounded-2xl border border-amber-300 p-6 shadow-sm';
-          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 uppercase tracking-wide">CAUTION ADVISED</span>';
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-amber-950 text-amber-300 border border-amber-500 shadow-inner font-luxury';
+          card.className = 'bg-qatar-card rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-500/50';
+          badgeContainer.innerHTML = '<span class="px-3.5 py-1 rounded-full text-xs font-bold bg-amber-900/60 text-amber-300 border border-amber-500/40 uppercase tracking-widest">CAUTION ADVISED</span>';
         } else {
-          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-rose-100 text-rose-800 shadow-inner';
-          card.className = 'bg-white rounded-2xl border-2 border-rose-400 p-6 shadow-sm';
-          badgeContainer.innerHTML = '<span class="px-3 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800 uppercase tracking-wide">HIGH FRAUD RISK</span>';
+          circle.className = 'w-16 h-16 rounded-2xl flex items-center justify-center font-extrabold text-2xl bg-rose-950 text-rose-300 border-2 border-rose-500 shadow-inner font-luxury';
+          card.className = 'bg-qatar-card rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-rose-600/70';
+          badgeContainer.innerHTML = '<span class="px-3.5 py-1 rounded-full text-xs font-extrabold bg-rose-950 text-rose-300 border border-rose-600 uppercase tracking-widest animate-pulse">BORDER ALERT: FRAUD</span>';
         }
 
         document.getElementById('shield-verdict-title').innerText = data.verdict;
         document.getElementById('shield-verdict-subtitle').innerText = `Risk Factor Score: ${data.risk_score} points`;
 
-        // Render Red Flags
         const flagsList = document.getElementById('shield-flags-list');
         if (!data.detected_red_flags || data.detected_red_flags.length === 0) {
-          flagsList.innerHTML = '<div class="p-3 bg-emerald-50 text-emerald-800 rounded-xl text-xs font-medium">✓ No advance-fee patterns, suspicious domains, or unverified chat triggers found.</div>';
+          flagsList.innerHTML = '<div class="p-3 bg-emerald-950/40 border border-emerald-500/30 text-emerald-300 rounded-xl text-xs font-medium">✓ No advance-fee patterns, suspicious domains, or unverified chat triggers found.</div>';
         } else {
           flagsList.innerHTML = data.detected_red_flags.map(f => `
-            <div class="p-2.5 rounded-lg bg-rose-50 border border-rose-200 text-xs text-rose-800 font-medium flex items-center space-x-2">
-              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-600 flex-shrink-0"></i>
+            <div class="p-3 rounded-xl bg-rose-950/40 border border-rose-800/40 text-xs text-rose-300 font-medium flex items-center space-x-2">
+              <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-500 flex-shrink-0"></i>
               <span>${f}</span>
             </div>
           `).join('');
@@ -1286,18 +1406,18 @@
 
         document.getElementById('shield-recommendation-text').innerText = data.safety_recommendation;
         document.getElementById('shield-results').classList.remove('hidden');
-        showToast('Scan complete!', score < 50 ? 'warning' : 'success');
+        showToast('Border scan complete!', score < 50 ? 'warning' : 'success');
       } catch (err) {
         showToast(`Scan error: ${err.message}`, 'error');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="shield-alert" class="w-4 h-4"></i><span>Scan Ad for Scams & Fraud</span>`;
+        btn.innerHTML = `<i data-lucide="shield-alert" class="w-4 h-4"></i><span>Run Biometric Fraud Scan</span>`;
         lucide.createIcons();
       }
     }
 
     // =========================================================================
-    // 6. STUDENT PRICE SNIFFER LOGIC
+    // 6. QATAR DUTY FREE PRICE SNIFFER
     // =========================================================================
     function quickPriceSearch(query) {
       document.getElementById('price-search-input').value = query;
@@ -1309,7 +1429,7 @@
       const container = document.getElementById('price-results');
       if (!q) return;
 
-      container.innerHTML = '<div class="text-center py-10 text-slate-400 text-xs"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2 text-emerald-600"></i>Sniffing price benchmarks across Takealot, Amazon SA, and Makro...</div>';
+      container.innerHTML = '<div class="text-center py-10 text-qatar-gold text-xs font-light"><i data-lucide="loader" class="w-5 h-5 animate-spin mx-auto mb-2"></i>Benchmarking duty free pricing across Takealot, Amazon SA, and Makro...</div>';
       lucide.createIcons();
 
       try {
@@ -1318,49 +1438,49 @@
 
         container.innerHTML = `
           <!-- Summary Banner -->
-          <div class="bg-gradient-to-r from-emerald-900 to-teal-900 text-white rounded-2xl p-6 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="qatar-gradient-header rounded-3xl p-6 sm:p-8 gold-border shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
-              <span class="text-emerald-300 text-xs font-bold uppercase tracking-wider">Lowest Market Price Found</span>
-              <h3 class="text-2xl font-black mt-1">${data.lowest_price_zar} <span class="text-sm font-normal text-emerald-200">on ${data.best_deal_retailer}</span></h3>
-              <p class="text-xs text-emerald-100 mt-1">${data.instant_savings}</p>
+              <span class="text-qatar-gold text-[10px] font-bold uppercase tracking-widest">Duty Free Lowest Verified Price</span>
+              <h3 class="text-3xl font-extrabold font-luxury mt-1 text-qatar-pearl">${data.lowest_price_zar} <span class="text-xs font-normal text-qatar-lightgold">on ${data.best_deal_retailer}</span></h3>
+              <p class="text-xs text-qatar-champagne/80 mt-1">${data.instant_savings}</p>
             </div>
-            <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 border border-white/20 text-xs">
-              <span class="text-emerald-300 font-semibold block">90-Day Trend Verdict:</span>
-              <span class="font-bold text-white text-sm">${data.historical_analysis.verdict}</span>
-              <span class="text-slate-300 block text-[11px] mt-0.5">Average benchmark: ${data.historical_analysis.average_90_day_price}</span>
+            <div class="bg-qatar-obsidian/60 backdrop-blur-md rounded-2xl p-4 border border-qatar-gold/30 text-xs">
+              <span class="text-qatar-gold font-semibold block uppercase text-[10px] tracking-wider">90-Day Trend Verdict:</span>
+              <span class="font-bold text-white text-sm block mt-0.5">${data.historical_analysis.verdict}</span>
+              <span class="text-qatar-champagne/60 block text-[11px] mt-0.5">Average retail benchmark: ${data.historical_analysis.average_90_day_price}</span>
             </div>
           </div>
 
           <!-- Retailers Grid -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             ${data.retailer_comparison.map(item => `
-              <div class="bg-white rounded-2xl border ${item.retailer === data.best_deal_retailer ? 'border-2 border-emerald-500 shadow-md' : 'border-slate-200'} p-5 flex flex-col justify-between">
+              <div class="bg-qatar-card rounded-3xl border ${item.retailer === data.best_deal_retailer ? 'border-2 border-qatar-gold shadow-2xl' : 'border-qatar-gold/20'} p-6 flex flex-col justify-between">
                 <div>
                   <div class="flex items-center justify-between mb-3">
-                    <span class="font-bold text-slate-800 text-sm">${item.retailer}</span>
-                    ${item.retailer === data.best_deal_retailer ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800 uppercase">Best Price</span>' : ''}
+                    <span class="font-bold text-qatar-pearl text-sm font-luxury">${item.retailer}</span>
+                    ${item.retailer === data.best_deal_retailer ? '<span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-qatar-gold text-qatar-obsidian uppercase tracking-wider">Best Deal</span>' : ''}
                   </div>
-                  <div class="text-xl font-extrabold text-slate-900">R${item.price_zar.toLocaleString()}</div>
-                  <div class="mt-2 text-xs text-slate-500 space-y-1">
-                    <div class="flex items-center space-x-1">
-                      <i data-lucide="truck" class="w-3.5 h-3.5 text-slate-400"></i>
+                  <div class="text-2xl font-black font-luxury text-qatar-pearl">R${item.price_zar.toLocaleString()}</div>
+                  <div class="mt-3 text-xs text-qatar-champagne/70 space-y-1.5 font-light">
+                    <div class="flex items-center space-x-1.5">
+                      <i data-lucide="truck" class="w-3.5 h-3.5 text-qatar-gold"></i>
                       <span>${item.shipping}</span>
                     </div>
-                    <div class="flex items-center space-x-1 text-emerald-600 font-medium">
+                    <div class="flex items-center space-x-1.5 text-emerald-400 font-medium">
                       <i data-lucide="check" class="w-3.5 h-3.5"></i>
                       <span>${item.stock}</span>
                     </div>
                   </div>
                 </div>
-                <button onclick="showToast('Redirecting to verified ${item.retailer} deal...', 'info')" class="mt-4 w-full py-2 rounded-xl text-xs font-semibold ${item.retailer === data.best_deal_retailer ? 'bg-emerald-600 text-white hover:bg-emerald-700' : 'bg-slate-100 text-slate-700 hover:bg-slate-200'} transition">
-                  Go to Retailer
+                <button onclick="showToast('Connecting to verified ${item.retailer} portal...', 'info')" class="mt-5 w-full py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider ${item.retailer === data.best_deal_retailer ? 'gold-gradient-bg text-qatar-obsidian' : 'bg-white/5 text-qatar-champagne hover:bg-white/10'} transition">
+                  Visit Retailer
                 </button>
               </div>
             `).join('')}
           </div>
         `;
       } catch (err) {
-        container.innerHTML = `<div class="text-rose-500 text-center py-6 text-xs">Failed to load price comparison: ${err.message}</div>`;
+        container.innerHTML = `<div class="text-rose-400 text-center py-6 text-xs">Failed to load price comparison: ${err.message}</div>`;
       }
       lucide.createIcons();
     }
@@ -1381,42 +1501,42 @@
         const data = await res.json();
         const slots = data.available_slots || [];
 
-        document.getElementById('booking-slot-count').innerText = `${slots.length} open slots detected`;
+        document.getElementById('booking-slot-count').innerText = `${slots.length} appointments available`;
 
         if (slots.length === 0) {
-          container.innerHTML = '<div class="text-center py-8 text-slate-400 text-xs">No slots found matching this filter. Breeze Sniper is actively scanning in background.</div>';
+          container.innerHTML = '<div class="text-center py-8 text-qatar-champagne/60 text-xs font-light">No appointment slots open for this venue. Al Mourjan Sniper is monitoring 24/7.</div>';
           return;
         }
 
         container.innerHTML = slots.map(s => `
-          <div class="p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-white hover:border-amber-300 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-start space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-xs flex-shrink-0">
+          <div class="p-5 rounded-2xl border border-qatar-gold/20 bg-qatar-obsidian/70 hover:border-qatar-gold transition flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="flex items-start space-x-4">
+              <div class="w-11 h-11 rounded-xl bg-qatar-burgundy text-qatar-lightgold flex items-center justify-center font-bold text-xs flex-shrink-0 border border-qatar-gold/30">
                 <i data-lucide="calendar" class="w-5 h-5"></i>
               </div>
               <div>
-                <h4 class="font-bold text-slate-900 text-xs sm:text-sm">${s.venue}</h4>
-                <div class="flex items-center space-x-3 text-xs text-slate-500 mt-1">
+                <h4 class="font-bold font-luxury text-qatar-pearl text-sm sm:text-base">${s.venue}</h4>
+                <div class="flex items-center space-x-3 text-xs text-qatar-champagne/70 mt-1 font-light">
                   <span>📅 ${s.date}</span>
                   <span>⏰ ${s.time}</span>
-                  <span class="text-emerald-600 font-semibold">● ${s.spots} slot(s) remaining</span>
+                  <span class="text-emerald-400 font-semibold">● ${s.spots} appointment(s) open</span>
                 </div>
               </div>
             </div>
-            <button onclick="snipeBookingSlot('${s.slot_id}', '${s.venue}', '${s.date}', '${s.time}')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs shadow-sm transition flex items-center justify-center space-x-1.5 flex-shrink-0">
+            <button onclick="snipeBookingSlot('${s.slot_id}', '${s.venue}', '${s.date}', '${s.time}')" class="px-5 py-2.5 rounded-xl gold-gradient-bg text-qatar-obsidian font-bold text-xs uppercase tracking-wider shadow-md hover:opacity-95 transition flex items-center justify-center space-x-1.5 flex-shrink-0">
               <i data-lucide="crosshair" class="w-3.5 h-3.5"></i>
               <span>Snipe & Reserve</span>
             </button>
           </div>
         `).join('');
       } catch (err) {
-        container.innerHTML = `<div class="text-rose-500 text-xs">Failed to load booking slots: ${err.message}</div>`;
+        container.innerHTML = `<div class="text-rose-400 text-xs">Failed to load booking slots: ${err.message}</div>`;
       }
       lucide.createIcons();
     }
 
     async function snipeBookingSlot(slotId, venue, date, time) {
-      showToast(`🎯 Sniping slot at ${venue}...`, 'info');
+      showToast(`🎯 Sniping appointment at ${venue}...`, 'info');
       try {
         const res = await fetch('/api/bookings/reserve', {
           method: 'POST',
@@ -1424,9 +1544,9 @@
           body: JSON.stringify({ slot_id: slotId, applicant: 'Bhekumusa Ntshwenya' })
         });
         const data = await res.json();
-        showToast(`✅ Reserved slot on ${date} at ${time}! Reference: ${data.reservation_reference || 'BRZ-CIVIC-89'}`, 'success');
+        showToast(`✅ Reserved appointment on ${date} at ${time}! Reference: ${data.reservation_reference || 'BRZ-CIVIC-89'}`, 'success');
       } catch (e) {
-        showToast(`Slot reserved! Reference: BRZ-ENATIS-2026`, 'success');
+        showToast(`Appointment reserved! Reference: BRZ-CIVIC-2026`, 'success');
       }
     }
 
@@ -1452,7 +1572,7 @@
         document.getElementById('email-subject').value = p.subject;
         document.getElementById('email-sender').value = p.sender;
         document.getElementById('email-body').value = p.body;
-        showToast(`Loaded ${type} email sample!`, 'info');
+        showToast(`Loaded ${type} correspondence!`, 'info');
       }
     }
 
@@ -1460,7 +1580,7 @@
       e.preventDefault();
       const btn = document.getElementById('email-submit-btn');
       btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Analyzing Intelligence...</span>`;
+      btn.innerHTML = `<i data-lucide="loader" class="w-4 h-4 animate-spin"></i><span>Extracting Intel...</span>`;
       lucide.createIcons();
 
       const payload = {
@@ -1479,59 +1599,59 @@
         const resultsContainer = document.getElementById('email-results');
 
         resultsContainer.innerHTML = `
-          <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+          <div class="bg-qatar-card rounded-3xl gold-border p-6 sm:p-8 shadow-xl space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-qatar-gold/20">
               <div class="flex items-center space-x-2">
-                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 text-purple-800">
+                <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-qatar-burgundy text-qatar-lightgold border border-qatar-gold/30">
                   ${data.detected_category}
                 </span>
-                <span class="text-xs font-semibold text-slate-700">${data.action_priority || 'LOGGED'}</span>
+                <span class="text-xs font-semibold text-qatar-champagne">${data.action_priority || 'LOGGED'}</span>
               </div>
-              <span class="text-xs text-slate-400">Parsed via MCP stdio</span>
+              <span class="text-xs text-qatar-gold font-mono">Parsed via MCP stdio</span>
             </div>
 
             ${data.extracted_meeting_time ? `
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                  <span class="text-slate-400 block text-[10px]">Extracted Interview Time</span>
-                  <span class="font-bold text-slate-900 text-sm">⏰ ${data.extracted_meeting_time}</span>
+                <div class="p-4 bg-qatar-obsidian rounded-2xl border border-qatar-gold/20">
+                  <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">INTERVIEW TIME</span>
+                  <span class="font-bold text-qatar-pearl text-sm mt-0.5 block">⏰ ${data.extracted_meeting_time}</span>
                 </div>
-                <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                  <span class="text-slate-400 block text-[10px]">Virtual Meeting Link</span>
-                  <span class="font-mono text-blue-600 truncate block">${data.extracted_meeting_link}</span>
+                <div class="p-4 bg-qatar-obsidian rounded-2xl border border-qatar-gold/20">
+                  <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">MEETING LINK</span>
+                  <span class="font-mono text-qatar-lightgold truncate block mt-0.5">${data.extracted_meeting_link}</span>
                 </div>
               </div>
             ` : ''}
 
             ${data.tailored_rsvp_draft ? `
               <div>
-                <div class="flex items-center justify-between mb-1.5">
-                  <span class="text-xs font-bold uppercase tracking-wider text-slate-600">Auto-Drafted Executive RSVP</span>
-                  <button onclick="copyToClipboard('rsvp-draft-box', 'RSVP copied to clipboard!')" class="text-xs text-blue-600 hover:text-blue-800 flex items-center space-x-1">
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-bold uppercase tracking-widest text-qatar-gold">Auto-Drafted Executive RSVP</span>
+                  <button onclick="copyToClipboard('rsvp-draft-box', 'RSVP copied to clipboard!')" class="text-xs text-qatar-lightgold hover:underline flex items-center space-x-1 font-semibold">
                     <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                     <span>Copy RSVP</span>
                   </button>
                 </div>
-                <pre id="rsvp-draft-box" class="p-4 bg-slate-900 text-slate-100 rounded-xl text-xs whitespace-pre-wrap font-sans leading-relaxed">${data.tailored_rsvp_draft}</pre>
+                <pre id="rsvp-draft-box" class="p-5 bg-qatar-obsidian border border-qatar-gold/20 text-qatar-champagne/90 rounded-2xl text-xs whitespace-pre-wrap font-mono leading-relaxed">${data.tailored_rsvp_draft}</pre>
               </div>
             ` : ''}
 
             ${data.extracted_reference_number ? `
-              <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800">
-                <span class="font-bold block">Application Logged to Notion Kanban</span>
-                <span>Reference Number: <strong>${data.extracted_reference_number}</strong> • Follow-up queued for ${data.next_follow_up || '14 days'}.</span>
+              <div class="p-4 bg-emerald-950/40 border border-emerald-500/30 rounded-2xl text-xs text-emerald-300">
+                <span class="font-bold block text-sm">Application Synced to Notion Kanban</span>
+                <span class="mt-0.5 block">Reference Number: <strong>${data.extracted_reference_number}</strong> • Follow-up queued for ${data.next_follow_up || '14 days'}.</span>
               </div>
             ` : ''}
           </div>
         `;
 
         resultsContainer.classList.remove('hidden');
-        showToast('Parsed email intelligence and prepared actions!', 'success');
+        showToast('Extracted intelligence and prepared executive actions!', 'success');
       } catch (err) {
-        showToast(`Email intel error: ${err.message}`, 'error');
+        showToast(`Email error: ${err.message}`, 'error');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i data-lucide="bot" class="w-4 h-4"></i><span>Extract Intel & Prepare Actions</span>`;
+        btn.innerHTML = `<i data-lucide="bot" class="w-4 h-4"></i><span>Extract Intel & Prepare RSVP</span>`;
         lucide.createIcons();
       }
     }
@@ -1544,34 +1664,17 @@
         const res = await fetch('/api/vault');
         const data = await res.json();
 
-        // Personal
-        const p = data.personal || {};
-        document.getElementById('vault-personal').innerHTML = `
-          <div><span class="text-slate-400 block text-[10px]">Full Name</span><strong>${p.first_name} ${p.last_name}</strong></div>
-          <div><span class="text-slate-400 block text-[10px]">National ID</span><span class="font-mono">${p.id_number}</span></div>
-          <div><span class="text-slate-400 block text-[10px]">Date of Birth</span><span>${p.date_of_birth} (${p.gender})</span></div>
-          <div><span class="text-slate-400 block text-[10px]">Nationality</span><span>${p.nationality}</span></div>
-        `;
-
-        // Contact
-        const c = data.contact || {};
-        document.getElementById('vault-contact').innerHTML = `
-          <div><span class="text-slate-400 block text-[10px]">Email</span><span class="text-blue-600">${c.email}</span></div>
-          <div><span class="text-slate-400 block text-[10px]">Mobile & WhatsApp</span><span>${c.phone}</span></div>
-          <div><span class="text-slate-400 block text-[10px]">Address</span><span>${c.street_address}, ${c.city}, ${c.province}</span></div>
-        `;
-
         // Academics
         const a = data.academics || {};
         const subjects = a.matric_subjects || {};
         document.getElementById('vault-academics').innerHTML = `
-          <div><span class="text-slate-400 block text-[10px]">Tertiary</span><strong>${a.highest_qualification}</strong></div>
-          <div><span class="text-slate-400 block text-[10px]">Institution</span><span>${a.institution} (Class of ${a.completion_year})</span></div>
-          <div><span class="text-slate-400 block text-[10px]">Matric School</span><span>${a.matric_school} (${a.matric_year})</span></div>
-          <div class="pt-1">
-            <span class="text-slate-400 block text-[10px] mb-1">Key Matric Subjects</span>
+          <div><span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">TERTIARY DEGREE</span><strong class="text-qatar-pearl">${a.highest_qualification}</strong></div>
+          <div><span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">INSTITUTION</span><span class="text-qatar-champagne">${a.institution} (Class of ${a.completion_year})</span></div>
+          <div><span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold">MATRIC SCHOOL</span><span class="text-qatar-champagne">${a.matric_school} (${a.matric_year})</span></div>
+          <div class="pt-2 border-t border-qatar-gold/15">
+            <span class="text-qatar-gold/70 block text-[9px] uppercase tracking-wider font-semibold mb-1">KEY SUBJECTS</span>
             <div class="grid grid-cols-2 gap-1 text-[11px]">
-              ${Object.entries(subjects).map(([k, v]) => `<div><span class="text-slate-500">${k}:</span> <strong>${v}</strong></div>`).join('')}
+              ${Object.entries(subjects).map(([k, v]) => `<div><span class="text-qatar-champagne/60">${k}:</span> <strong class="text-qatar-lightgold">${v}</strong></div>`).join('')}
             </div>
           </div>
         `;
@@ -1579,18 +1682,18 @@
         // Skills
         const skills = data.skills || [];
         document.getElementById('vault-skills').innerHTML = skills.map(s => `
-          <span class="px-2.5 py-1 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">${s}</span>
+          <span class="px-2.5 py-1 rounded-lg bg-qatar-card border border-qatar-gold/20 text-xs font-semibold text-qatar-champagne">${s}</span>
         `).join('');
 
         // Documents
         const docs = data.documents || {};
         document.getElementById('vault-documents').innerHTML = Object.entries(docs).map(([name, path]) => `
-          <div class="p-2.5 rounded-lg bg-white border border-slate-200 flex items-center justify-between">
+          <div class="p-3 rounded-xl bg-qatar-card border border-qatar-gold/20 flex items-center justify-between">
             <div>
-              <span class="font-bold text-slate-800 text-[11px] block">${name}</span>
-              <span class="text-[10px] font-mono text-slate-400 truncate block max-w-[200px]">${path.split('/').pop()}</span>
+              <span class="font-bold text-qatar-pearl text-xs block font-luxury">${name}</span>
+              <span class="text-[10px] font-mono text-qatar-champagne/50 truncate block max-w-[170px]">${path.split('/').pop()}</span>
             </div>
-            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded">Verified</span>
+            <span class="text-[9px] font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded">VERIFIED</span>
           </div>
         `).join('');
 
